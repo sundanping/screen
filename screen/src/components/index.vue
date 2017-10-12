@@ -1,7 +1,7 @@
 <template>
   <article class="index" :style='bgimg'>
     <nav :style="navBackground">导航栏</nav>
-
+<!--bannner 图片-->
     <section class="banner">
       <div class="left" :style="bannerBackGround[0]"></div>
       <div class="middle" :style="bannerBackGround[1]">
@@ -9,13 +9,16 @@
       </div>
       <div class="right" :style="bannerBackGround[2]"></div>
     </section>
+    <!--bannner 图片-->
+
     <section class="">
       <div>今日统计</div>
       <div>本周统计</div>
       <div>本月统计</div>
     </section>
-    <aside class="left-button">1</aside>
-    <aside class="right-button">22222</aside>
+    <!--左右按钮-->
+    <aside class="left-button" @click="toLeft()">111111</aside>
+    <aside class="right-button"  @click="toRight()">22222</aside>
   </article>
 </template>
 
@@ -51,8 +54,25 @@ export default {
           backgroundSize: '100% 100%'}
       ]
     }
+  },
+  methods: {
+    toLeft () {
+      let left = this.bannerBackGround[0]
+      console.log(left)
+      this.bannerBackGround =this.bannerBackGround.slice(1);
+      this.bannerBackGround.push(left)
+      console.log(this.bannerBackGround)
+    },
+    toRight () {
+      let right = this.bannerBackGround[2]
+      this.bannerBackGround.length =2;
+      this.bannerBackGround.unshift(right)
+      console.log(this.bannerBackGround)
+
+    }
   }
 }
+
 </script>
 <style>
   *{
