@@ -1,14 +1,13 @@
 <template>
   <article>
-    wewdfew
+    w
   </article>
 </template>
 <script>
   export default {
-    name: 'appSeven'
+    name: 'installTarget'
   }
 </script>
 <style scoped>
-
 
 </style>

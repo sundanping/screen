@@ -21,6 +21,9 @@ export default {
     let windowHeight = window.innerHeight
     console.log(windowHeight)
     document.getElementById('app').style.height=windowHeight + 'px'
+    window.onresize = function(){
+      window.location.reload()
+    }
   }
 }
 </script>

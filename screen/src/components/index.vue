@@ -4,8 +4,12 @@
     <!--bannner 图片BEGIN-->
     <section class="banner">
 
-      <router-link :to="{path:'/'+ bannerBackGround[0].name}"><div id="left" class="left" :style="bannerBackGround[0]"></div></router-link>
-      <router-link :to="{path:'/'+ bannerBackGround[1].name}"><div id="middle" class="middle line-gradient" >
+      <router-link :to="{path:'/'+ bannerBackGround[0].name}"><div id="left" class="left" :style="bannerBackGround[0]"
+       @mouseenter="clearClock()" @mouseleave="startClock()">serfeqwdfeqw3d
+        <!--<div style="position: absolute">e</div>-->
+      </div></router-link>
+      <router-link :to="{path:'/'+ bannerBackGround[1].name}"><div id="middle" class="middle line-gradient"
+           @mouseenter="clearClock()" @mouseleave="startClock()">
         <span class="border-left-top border-radius-product"></span>
         <span class="border-right-top border-radius-product "></span>
         <span class="border-left-bottom border-radius-product"></span>
@@ -13,8 +17,10 @@
 
         <div class="inline-block" :style=[bannerBackGround[1]] ></div>
       </div></router-link>
-      <router-link :to="{path:'/'+ bannerBackGround[2].name}"><div  id="right" class="right" :style="bannerBackGround[2]" @click='reminder()'>
-        <span :class="reminders === true ?'reminder':null"  style=" opacity: 0;position: absolute;top:350px;left:140px;border:1px solid #fff;padding:4px;">资源创建中...</span>
+      <router-link :to="{path:'/'+ bannerBackGround[2].name}">
+        <div  id="right" class="right" :style="bannerBackGround[2]" @click='reminder()'
+              @mouseenter="clearClock()" @mouseleave="startClock()">
+        <span :class="reminders === true ?'reminder':null" style=" opacity: 0;position: absolute;top:350px;left:140px;border:1px solid #fff;padding:4px;">资源创建中...</span>
       </div></router-link>
     </section>
     <!--bannner 图片END-->
@@ -93,12 +99,19 @@ export default {
     }
   },
   mounted () {
-    this.banner()
+//    this.banner()
+    let w =document.getElementById('left').clientWidth
+    console.log(w)
+    document.getElementById('left').style.height=w*82.6/62 + 'px'
+    document.getElementById('right').style.height=w*82.6/62 + 'px'
+    document.getElementById('middle').style.height=w*82.6/62 + 'px'
+    this.bannerInterval= setInterval(this.toLeft,3000)
+
   },
   methods: {
-    banner () {
-        this.bannerInterval= setInterval(this.toLeft,3000)
-    },
+//    banner () {
+//      console.log(234343)
+//    },
     toLeft () {
       let left = this.bannerBackGround[0]
       this.bannerBackGround =this.bannerBackGround.slice(1);
@@ -106,6 +119,7 @@ export default {
     },
     toRight () {
       window.clearTimeout(this.bannerInterval)
+      this.bannerInterval= setInterval(this.toLeft,3000)
       let right = this.bannerBackGround[2]
       this.bannerBackGround.length =2;
       this.bannerBackGround.unshift(right)
@@ -128,6 +142,12 @@ export default {
       setTimeout(function(){
         _this.reminders = false
       },4000)
+    },
+    clearClock (){
+      window.clearTimeout(this.bannerInterval)
+    },
+    startClock () {
+      this.bannerInterval= setInterval(this.toLeft,3000)
     }
   }
 }
@@ -210,6 +230,7 @@ nav{
      /*background-color: aquamarine;*/
      width: 30%;
      height:88%;
+  overflow: hidden;
    }
 .left{
   z-index:5;
@@ -239,7 +260,6 @@ middle>div{
   display: inline-block;
 }
 /*按钮*/
-
   .left-button{
     position: absolute;
     top:45%;

@@ -5,41 +5,51 @@
       <span @click="$router.go(-1)">{{goBack}}</span>
     </header>
     <section>
-      <fieldset>
 
+      <fieldset>
+        <legend >APP累计</legend>
+        <honor-roll></honor-roll>
       </fieldset>
-
       <fieldset>
-        ew<legend >APP累计</legend>
-        分期
+        <legend >APP累计</legend>
+      为什么加入内容就掉下来
+
       </fieldset>
     </section>
     <section>
       <fieldset>
-        ew<legend >APP累计</legend>
-        分期
-      </fieldset>
+        <legend >APP累计</legend>
 
+      </fieldset>
       <fieldset>
-        ew<legend >APP累计</legend>
-        分期
-      </fieldset>
-    </section><section>
-    <fieldset>
-      ew<legend >APP累计</legend>
-      分期
-    </fieldset>
+       <legend >APP累计</legend>吃饭vacadsc汽车前往
 
-    <fieldset>
-      ew<legend >APP累计</legend>
-      分期
-    </fieldset>
-  </section>
+      </fieldset>
+    </section>
+    <section>
+      <fieldset>
+        <legend >APP累计</legend>
+
+      </fieldset>
+      <fieldset>
+      <legend >APP累计</legend>
+
+      </fieldset>
+    </section>
+
   </article>
 </template>
 <script>
+  import honorRoll from './production/honor-roll'
+  import pressNumber from './production/press-number'
+
+
+
   export default {
     name: 'production',
+    components: {
+      honorRoll
+    },
     data() {
       return {
         userStatistics: '用户统计',
@@ -61,19 +71,26 @@
   article{
     padding:2%;
   }
+
   header{
     border-bottom:1px dotted #006ce1;
     width: 100%;
+    overflow: hidden;
   }
   header span{
     font-size: 20px;
+    overflow: hidden;
+
   }
   header span:last-child{
     float: right;
+
     background-color: #bfbfbf;
     padding: 0 5px;
   }
-  fieldset{
+fieldset{
+    overflow: hidden;
+  /*清除浮动*/
     width: 45%;
     height: 30%;
     display: inline-block;

@@ -1,14 +1,14 @@
 <template>
   <article>
-    wewdfew
+    aaa
   </article>
 </template>
 <script>
   export default {
-    name: 'appSeven'
+    name: 'totalApp'
   }
+
 </script>
 <style scoped>
-
 
 </style>
