@@ -1,6 +1,6 @@
 <template>
   <article>
-    wqw
+
   </article>
 </template>
 <script>

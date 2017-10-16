@@ -34,7 +34,6 @@
         <pv-target></pv-target>
       </fieldset>
     </section>
-
   </article>
 </template>
 <script>
@@ -66,7 +65,6 @@
       console.log(windowHeight)
       let fieldset = document.getElementsByTagName('fieldset')
       for(let key of fieldset){
-        console.log(key)
         key.style.height=windowHeight*0.3 + 'px'
       }
     }
@@ -75,16 +73,20 @@
 <style scoped>
 
   article{
-    padding:2%;
     overflow: hidden;
+    padding:0 1%;
 
   }
 section{
+  width: 100%;
   overflow: hidden;
+
 }
   header{
     border-bottom:1px dotted #006ce1;
     width: 100%;
+    height: 6%;
+    margin-bottom:1%;
     overflow: hidden;
   }
   header span{
@@ -99,12 +101,17 @@ section{
     padding: 0 5px;
   }
   fieldset{
-    overflow: hidden;
     /*清除浮动*/
-    width: 45%;
+    box-sizing: border-box;
+    width: 49%;
     height: 30%;
     display: inline-block;
     border-radius: 6px;
+    overflow: hidden;
+  }
+
+  section fieldset:nth-child(even){
+    margin-left: 1%;
   }
   legend{
     margin-left: 25px;

@@ -5,7 +5,7 @@
     <section class="banner">
 
       <router-link :to="{path:'/'+ bannerBackGround[0].name}"><div id="left" class="left" :style="bannerBackGround[0]"
-       @mouseenter="clearClock()" @mouseleave="startClock()">serfeqwdfeqw3d
+       @mouseenter="clearClock()" @mouseleave="startClock()">
         <!--<div style="position: absolute">e</div>-->
       </div></router-link>
       <router-link :to="{path:'/'+ bannerBackGround[1].name}"><div id="middle" class="middle line-gradient"
