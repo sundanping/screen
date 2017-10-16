@@ -1,7 +1,8 @@
 <template>
   <article class="lists">
-
-    <div id="myChart1" :style="{width: '100%', height: '100%'}"></div>
+<div class="contents">
+  <div id="myChart1" ></div>
+</div>
   </article>
 </template>
 <script>
@@ -39,41 +40,50 @@
       }
     },
     mounted() {
+      let clientW = document.body.clientWidth
+      let clientH = document.body.clientHeight
+      document.getElementById('myChart1').style.width=clientW*0.47+ 'px'
+      document.getElementById('myChart1').style.height=clientH*0.3+ 'px'
       this.drawLine()
-      setTimeout(this.timeOut,0)
-
     },
     methods: {
-      timeOut() {
-
-      },
       drawLine() {
         // 基于准备好的dom，初始化echarts实例
         let myChart = this.$echarts.init(document.getElementById('myChart1'))
         // 绘制图表
         myChart.setOption({
+          title: {
+            text: '堆叠区域图',
+            color:'#fff'
+          },
           color: ['#8d6cf9', '#f36764', '#fc8e26', '#14da7e'],
           legend: {
-            right: '60',
-            top: '0',
+            center: 'center',
+            top: '3',
             textStyle: {
               color: '#fff'
             },
             data: [ '视频', '专题', '图集']
           },
+          toolbox: {
+            feature: {
+              saveAsImage: {}
+            }
+          },
           tooltip: {
             trigger: 'axis'
           },
           textStyle: {
-            color: '#fff'
+            color: '#ffffff'
           },
           grid: {
-            left: '3%',
+            left: '7%',
             right: '7%',
             bottom: '12%',
             containLabel: true
           },
           xAxis: [
+
             {
               type: 'category',
               name: '日期',
@@ -81,10 +91,10 @@
               axisLine: {
                 lineStyle: {
                   color: ['#71a4f2'],
-                  width: '1',
                   type: 'solid'
                 }
               },
+              saveAsImage:true,
               axisTick: {
                 show: false,
                 alignWithLabel: true
@@ -101,7 +111,7 @@
               smooth: true,
               stack: '总量',
               areaStyle: {normal: {}},
-              data: [4, 3, 2, 1, 1, 3, 4]
+              data: [4, 3, 2, 1, 1, 3, 114]
             },
             {
               name: '专题',
@@ -133,5 +143,12 @@
     position: relative;
     padding: 5px;
     overflow: hidden;}
+  .contents{
+    height: 100% ;
+    width: 100%;
+  }
+  .contents>#myChart1{
+    min-width: 200px;
+  }
 
 </style>

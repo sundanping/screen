@@ -2,7 +2,7 @@
   <template>
     <article class="lists">
 
-      <div id="myChart" :style="{width: '100%', height: '100%'}"></div>
+      <div id="myChart" ></div>
     </article>
   </template>
   <script>
@@ -14,6 +14,10 @@
         }
       },
       mounted() {
+        let clientW = document.body.clientWidth
+        let clientH = document.body.clientHeight
+        document.getElementById('myChart').style.width=clientW*0.47+ 'px'
+        document.getElementById('myChart').style.height=clientH*0.3+ 'px'
         this.drawLine()
       },
       methods: {

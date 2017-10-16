@@ -1,20 +1,21 @@
 <template>
   <article class="lists">
 
-    <div id="myChart2" :style="{width: '100%', height: '100%'}"></div>
+    <div id="myChart2" ></div>
   </article>
 </template>
 <script>
   export default {
     name: 'websiteSeven',
     mounted() {
+      let clientW = document.body.clientWidth
+      let clientH = document.body.clientHeight
+      document.getElementById('myChart2').style.width=clientW*0.47+ 'px'
+      document.getElementById('myChart2').style.height=clientH*0.3+ 'px'
       this.drawLine()
-      setTimeout(this.timeOut,0)
     },
     methods: {
-      timeOut() {
 
-      },
       drawLine() {
         // 基于准备好的dom，初始化echarts实例
         let myChart = this.$echarts.init(document.getElementById('myChart2'))
