@@ -87,6 +87,7 @@ section{
     width: 100%;
     height: 6%;
     margin-bottom:1%;
+    margin-top:1%;
     overflow: hidden;
   }
   header span{

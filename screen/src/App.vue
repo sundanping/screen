@@ -1,7 +1,7 @@
 <template>
-  <div id="app" :style="bgimg">
+  <div id="app" >
    <div class="canvaszz"> </div>
-  <canvas id="canvas"></canvas> 
+  <canvas id="canvas"></canvas>
     <router-view></router-view>
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
   hue = 217,
   stars = [],
   count = 0,
-  maxStars = 1300;//星星数量
+  maxStars = 500;//星星数量
 
 var canvas2 = document.createElement('canvas'),
   ctx2 = canvas2.getContext('2d');
@@ -80,12 +80,12 @@ function maxOrbit(x, y) {
 var Star = function() {
 
   this.orbitRadius = random(maxOrbit(w, h));
-  this.radius = random(60, this.orbitRadius) / 8; 
+  this.radius = random(60, this.orbitRadius) / 8;
   //星星大小
   this.orbitX = w / 2;
   this.orbitY = h / 2;
   this.timePassed = random(0, maxStars);
-  this.speed = random(this.orbitRadius) / 50000; 
+  this.speed = random(this.orbitRadius) / 50000;
   //星星移动速度
   this.alpha = random(2, 10) / 10;
 

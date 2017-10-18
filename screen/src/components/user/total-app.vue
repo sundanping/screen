@@ -1,145 +1,108 @@
+<template>
+  <div class="lists">
 
-  <template>
-    <article class="lists">
+    <div id="mission" :style="{width: '100%', height: '100%'}"></div>
+  </div>
 
-      <div id="myChart" ></div>
-    </article>
-  </template>
-  <script>
-    export default {
-      name: 'totalApp',
-      data() {
-        return {
-          getWidth: false
-        }
-      },
-      mounted() {
-        let clientW = document.body.clientWidth
-        let clientH = document.body.clientHeight
-        document.getElementById('myChart').style.width=clientW*0.47+ 'px'
-        document.getElementById('myChart').style.height=clientH*0.3+ 'px'
-        this.drawLine()
-      },
-      methods: {
-        timeOut() {
-        },
-        drawLine() {
-          // 基于准备好的dom，初始化echarts实例
-          this.timeOut()
-          this.getWidth = true
-          let myChart = this.$echarts.init(document.getElementById('myChart'))
-          // 绘制图表
-          myChart.setOption({
-            color: [ '#f36764', '#fc8e26', '#14da7e'],
-            legend: {
-              right: '60',
-              top: '0',
-              textStyle: {
-                color: '#fff'
-              },
-              data: [ '视频', '专题', '图集']
-            },
-            tooltip: {
-              trigger: 'axis'
-            },
+</template>
+<script>
+  let clue = require('../../json/clue.json')
+  export default {
+    name: 'totalApp',
+    data () {
+      return {
+        nav: [{name: '互联网'}, {name: '微信'}],
+        lists: clue.data,
+        msg:[ '待核', '已完成', '已归档']
+      }
+    },
+    created () {
+    },
+    mounted () {
+      let clientW = document.body.clientWidth
+      let clientH = document.body.clientHeight
+      document.getElementById('mission').style.width=clientW*0.47+ 'px'
+      document.getElementById('mission').style.height=clientH*0.3+ 'px'
+      this.drawLine()
+    },
+    computed: {
+    },
+    methods:{
+
+      drawLine () {
+        let myChart = this.$echarts.init(document.getElementById('mission'))
+        // 绘制图表
+        myChart.setOption({
+          color: [ '#77173e', '#C14964', '#dB9DBB'],
+          textStyle: {
+            color: '#fff'
+          },
+          legend: {
+            orient: 'vertical', // 图例列表的布局朝向。
+            x: 'right',
+            y: 'bottom',
             textStyle: {
               color: '#fff'
             },
-            grid: {
-              left: '3%',
-              right: '7%',
-              bottom: '12%',
-              containLabel: true
-            },
-            xAxis: [
-              {
-                type: 'category',
-                name: '日期',
-                boundaryGap: false,
-                axisLine: {
-                  lineStyle: {
-                    color: ['#71a4f2'],
-                    width: '1',
-                    type: 'solid'
+            data: this.msg
+          },
+          series: [
+            {
+//              name: '任务统计',
+              type: 'pie',
+              radius: ['50%', '70%','40%'], // 圆环
+              avoidLabelOverlap: false,
+              label: {
+                normal: {
+                  show: true,
+                  formatter: ' {d}%',
+                  textStyle: {
+                    fontSize: '14',
+                    fontWeight: 'bold'
                   }
                 },
-                axisTick: {
-                  show: false,
-                  alignWithLabel: true
-                },
-                data: ['09-23', '09-24', '09-25', '09-26', '09-27', '09-28', '09-29']
-              }
-            ],
-            yAxis: [
-              {
-                type: 'value',
-                name: '数量',
-                axisLine: {
-                  lineStyle: {
-                    color: ['#71a4f2'],
-                    width: '1',
-                    type: 'solid'
+                emphasis: {
+                  show: true,
+                  textStyle: {
+                    fontSize: '16',
+                    fontWeight: 'bold'
                   }
-                },
-                axisTick: {
-                  show: false,
-                  alignWithLabel: true
-                },
-                splitLine: {
-                  lineStyle: {
-                    color: ['rgba(113,164,242,0.3)'],
-                    width: '1',
-                    type: 'dashed'
-                  }
-                },
-                axisPointer: {
+                }
+              },  // 折线
+              labelLine: {
+                normal: {
                   show: true
                 }
-              }
-            ],
-            series: [
-
-              {
-                name: '视频',
-                type: 'line',
-                smooth: true,
-                stack: '总量',
-                areaStyle: {normal: {}},
-                data: [4, 3, 2, 1, 1, 3, 4]
-              },
-              {
-                name: '专题',
-                type: 'line',
-                smooth: true,
-                stack: '总量',
-                areaStyle: {normal: {}},
-                data: [4, 3, 2, 1, 1, 3, 4]
-              },
-              {
-                name: '图集',
-                type: 'line',
-                smooth: true,
-                stack: '总量',
-                areaStyle: {normal: {}},
-                data: [4, 3, 2, 1, 1, 3, 4]
-              }
-            ]
-          })
-        }
+              },  // 移入之后折线
+              data: [
+                {value: 274, name: '待核'},
+                {value: 235, name: '已完成'},
+                {value: 400, name: '已归档'}
+              ]
+            }
+          ]
+        })
       }
+    },
+    watch: {
     }
-  </script>
-  <style  scoped>
-    .lists{
-      width: 100%;
-      height: 100%;
-      flex-basis: 100%;
-      position: relative;
-      padding: 5px;
-      overflow: hidden;}
-.size{
-  width: 100%;
-  height: 100%;
-}
-  </style>
+  }
+</script>
+<style  scoped>
+  .lists{
+    width: 100%;
+    height: 100%;
+    flex-basis: 100%;
+    position: relative;
+    padding: 5px;
+    overflow: hidden;}
+  .contents{
+    height: 100% ;
+    width: 100%;
+  }
+  .contents>#myChart1{
+    min-width: 200px;
+    color:red;
+  }
 
+</style>
