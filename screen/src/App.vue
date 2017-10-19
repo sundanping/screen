@@ -85,7 +85,7 @@ var Star = function() {
   this.orbitX = w / 2;
   this.orbitY = h / 2;
   this.timePassed = random(0, maxStars);
-  this.speed = random(this.orbitRadius) / 50000;
+  this.speed = random(this.orbitRadius) / 120000;
   //星星移动速度
   this.alpha = random(2, 10) / 10;
 
@@ -161,7 +161,7 @@ canvas{
     padding:0;
     color:#fff;
   }
-  article,section,header,aside{
+  article,section,header,aside,div,span,p,fieldset{
     box-sizing: border-box;
   }
   html{
@@ -170,4 +170,8 @@ canvas{
   a{
     text-decoration: none;
   }
+  legend{
+    font-size:18px;
+  }
+
 </style>

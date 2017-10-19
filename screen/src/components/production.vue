@@ -1,42 +1,53 @@
 <template>
   <article>
-    <header>
-      <span >{{userStatistics}}</span>
+    <header id="header">
+      <span>{{userStatistics}}</span>
       <span @click="$router.go(-1)">{{goBack}}</span>
     </header>
-    <section>
+    <section id="father">
+      <section class="left">
+        <!--top-->
+        <div class="left-top">
+          <div>
+            <fieldset>
+              <legend>累计发稿量</legend>
+            </fieldset>
+          </div>
+          <div>
+            <fieldset>
+            <legend>2</legend>
+          </fieldset>
+          </div>
+        </div>
+        <!--middle-->
+        <div style="margin-right:.9%;">
+          <fieldset>
+            <legend>2</legend>
+          </fieldset>
+        </div>
+        <!--bottom-->
+        <div style="margin-right:.9%;">
+          <fieldset>
+          <legend>2</legend>
+        </fieldset>
+        </div>
+      </section>
 
-      <fieldset>
-        <legend >APP累计</legend>
-        <honor-roll></honor-roll>
-      </fieldset>
-      <fieldset>
-        <legend >APP累计</legend>
-      为什么加入内容就掉下来
-
-      </fieldset>
+      <section class="production-right">
+        <!--top-->
+        <div>
+          <fieldset>
+            <legend>2</legend>
+          </fieldset>
+        </div>
+        <!--bottom-->
+        <div>
+          <fieldset>
+            <legend>2</legend>
+          </fieldset>
+        </div>
+      </section>
     </section>
-    <section>
-      <fieldset>
-        <legend >APP累计</legend>
-
-      </fieldset>
-      <fieldset>
-       <legend >APP累计</legend>吃饭vacadsc汽车前往
-
-      </fieldset>
-    </section>
-    <section>
-      <fieldset>
-        <legend >APP累计</legend>
-
-      </fieldset>
-      <fieldset>
-      <legend >APP累计</legend>
-
-      </fieldset>
-    </section>
-
   </article>
 </template>
 <script>
@@ -57,19 +68,22 @@
       }
     },
     mounted () {
-      let windowHeight = window.innerHeight
+      let windowHeight = document.body.clientHeight
       console.log(windowHeight)
-      let fieldset = document.getElementsByTagName('fieldset')
-        for(let key of fieldset){
-          console.log(key)
-            key.style.height=windowHeight*0.3 + 'px'
-        }
+      let headerHeight = document.getElementById('header').clientHeight
+//      document.getElementById('father').style.height=(windowHeight-headerHeight)+'px'//后台加载高度
+//      let fieldset = document.getElementsByTagName('fieldset')
+//        for(let key of fieldset){
+//          console.log(key)
+//            key.style.height=windowHeight*0.3 + 'px'
+//        }
     }
   }
 </script>
 <style scoped>
   article{
-    padding:2%;
+    padding:2.5%;
+    height: 100%;
   }
 
   header{
@@ -80,7 +94,6 @@
   header span{
     font-size: 20px;
     overflow: hidden;
-
   }
   header span:last-child{
     float: right;
@@ -88,12 +101,55 @@
     background-color: #bfbfbf;
     padding: 0 5px;
   }
-fieldset{
-    overflow: hidden;
-  /*清除浮动*/
-    width: 45%;
-    height: 30%;
+  /*图标栏*/
+  #father{
+    height:100%;
+    display:flex;
+    overflow:hidden;
+  }
+  .left{
+    flex:2;
+    height:100%;
+  }
+  .left>div{
+    height: 32%;
+    margin-top:1.3%;
+  overflow: hidden;
+  }
+  .left-top >div{
+    width: 49%;
     display: inline-block;
+    height:100%;
+    overflow: hidden;
+
+    /*border:1px solid #666;*/
+  }
+  .left-top >div:last-child{
+    margin-left:1%;
+  }
+  .production-right{
+    flex:1;
+    height:100%;
+    overflow: hidden;
+
+  }
+  .production-right>div{
+    width:100%;
+    height:49%;
+    display:inline-block;
+    margin-left:1.25%;
+    overflow: hidden;
+
+  }
+  .production-right>div:first-child{
+    margin-top: 2.5%;
+  }
+  /*图标栏*/
+fieldset{
+  /*清除浮动*/
+    width: 100%;
+    height: 100%;
+     overflow: hidden;
     border-radius: 6px;
   }
   legend{

@@ -21,7 +21,7 @@
     mounted () {
       let clientW = document.body.clientWidth
       let clientH = document.body.clientHeight
-      document.getElementById('mission').style.width=clientW*0.47+ 'px'
+      document.getElementById('mission').style.width=clientW*0.47/2.2+ 'px'
       document.getElementById('mission').style.height=clientH*0.3+ 'px'
       this.drawLine()
     },

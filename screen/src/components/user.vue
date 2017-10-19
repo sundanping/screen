@@ -4,14 +4,18 @@
       <span >{{userStatistics}}</span>
       <span @click="$router.go(-1)">{{goBack}}</span>
     </header>
-    <section>
-      <fieldset>
+    <section >
+      <fieldset id="app-count">
         <legend >APP累计</legend>
-        <total-app></total-app>
+        <div><total-app></total-app></div>
       </fieldset>
-      <fieldset>
+      <fieldset id="web">
         <legend >网站累计</legend>
-        <website></website>
+        <div>
+          <website></website>
+
+        </div>
+        <div></div>
       </fieldset>
     </section>
     <section>
@@ -36,7 +40,7 @@
     </section>
   </article>
 </template>
-<script>
+  <script>
   import totalApp from './user/total-app'
   import installTarget from './user/install-target'
   import pvTarget from './user/pv-target'
@@ -82,6 +86,12 @@ section{
   overflow: hidden;
 
 }
+#web>div{
+  display:inline-block;
+  width:45%;
+  height:99%;
+  overflow:hidden;
+}
   header{
     border-bottom:1px dotted #006ce1;
     width: 100%;
@@ -91,15 +101,21 @@ section{
     overflow: hidden;
   }
   header span{
-    font-size: 20px;
+    font-size: 22px;
     overflow: hidden;
-
   }
   header span:last-child{
     float: right;
-
+    position:relative;
+    bottom:2px;
     background-color: #bfbfbf;
     padding: 0 5px;
+  }
+  #app-count >div{
+    display:inline-block;
+    width:45%;
+    height:99%;
+    overflow:hidden;
   }
   fieldset{
     /*清除浮动*/
@@ -109,6 +125,7 @@ section{
     display: inline-block;
     border-radius: 6px;
     overflow: hidden;
+
   }
 
   section fieldset:nth-child(even){
