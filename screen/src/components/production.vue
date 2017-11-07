@@ -4,46 +4,48 @@
       <span>{{userStatistics}}</span>
       <span @click="$router.go(-1)">{{goBack}}</span>
     </header>
-    <section id="father">
+    <section id="product">
       <section class="left">
         <!--top-->
         <div class="left-top">
           <div>
             <fieldset>
               <legend>累计发稿量</legend>
+              <honor-roll></honor-roll>
             </fieldset>
           </div>
           <div>
             <fieldset>
-            <legend>2</legend>
+            <legend>累计访问量</legend>
+              <press-number></press-number>
           </fieldset>
           </div>
         </div>
         <!--middle-->
         <div style="margin-right:.9%;">
           <fieldset>
-            <legend>2</legend>
+            <legend>近七日日均发稿</legend>
           </fieldset>
         </div>
         <!--bottom-->
         <div style="margin-right:.9%;">
           <fieldset>
-          <legend>2</legend>
+          <legend>24小时访问量</legend>
         </fieldset>
         </div>
       </section>
 
       <section class="production-right">
         <!--top-->
-        <div>
+        <div style="margin-left:0; ">
           <fieldset>
-            <legend>2</legend>
+            <legend>本周光荣榜</legend>
           </fieldset>
         </div>
         <!--bottom-->
-        <div>
+        <div style="margin-left:0; ">
           <fieldset>
-            <legend>2</legend>
+            <legend>本周TOP10</legend>
           </fieldset>
         </div>
       </section>
@@ -53,17 +55,15 @@
 <script>
   import honorRoll from './production/honor-roll'
   import pressNumber from './production/press-number'
-
-
-
   export default {
     name: 'production',
     components: {
-      honorRoll
+      honorRoll,
+      pressNumber
     },
     data() {
       return {
-        userStatistics: '用户统计',
+        userStatistics: '内容统计',
         goBack: '返回'
       }
     },
@@ -82,7 +82,7 @@
 </script>
 <style scoped>
   article{
-    padding:2.5%;
+    padding:1%;
     height: 100%;
   }
 
@@ -97,12 +97,11 @@
   }
   header span:last-child{
     float: right;
-
     background-color: #bfbfbf;
     padding: 0 5px;
   }
   /*图标栏*/
-  #father{
+  #product{
     height:100%;
     display:flex;
     overflow:hidden;
@@ -114,7 +113,7 @@
   .left>div{
     height: 32%;
     margin-top:1.3%;
-  overflow: hidden;
+    overflow: hidden;
   }
   .left-top >div{
     width: 49%;
@@ -125,21 +124,18 @@
     /*border:1px solid #666;*/
   }
   .left-top >div:last-child{
-    margin-left:1%;
+    margin-left:.6%;
   }
   .production-right{
     flex:1;
     height:100%;
     overflow: hidden;
-
   }
   .production-right>div{
     width:100%;
     height:49%;
     display:inline-block;
-    margin-left:1.25%;
     overflow: hidden;
-
   }
   .production-right>div:first-child{
     margin-top: 2.5%;
@@ -153,6 +149,6 @@ fieldset{
     border-radius: 6px;
   }
   legend{
-    margin-left: 25px;
+    margin-left: 6%;
   }
 </style>

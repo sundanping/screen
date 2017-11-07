@@ -103,10 +103,6 @@
     posotion:relative;
 
   }
-  /*.contents>#website{*/
-    /*min-width: 200px;*/
-    /*color:red;*/
-  /*}*/
+  </style>
 
-</style>
 

@@ -1,5 +1,7 @@
 <template>
-<div>2@@212</div>
+<div>
+  <h2>refgw</h2>
+</div>
 </template>
 <script>
   export default {

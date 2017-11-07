@@ -127,7 +127,14 @@
     flex-basis: 100%;
     position: relative;
     padding: 5px;
-    overflow: hidden;}
+    overflow: hidden;
+  }
+  .lists>div{
+    float: left;
+    width: 100%;
+    overflow: hidden;
 
+    /*溢出处理*/
+  }
 </style>
 

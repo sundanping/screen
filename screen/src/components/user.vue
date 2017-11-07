@@ -8,6 +8,7 @@
       <fieldset id="app-count">
         <legend >APP累计</legend>
         <div><total-app></total-app></div>
+
       </fieldset>
       <fieldset id="web">
         <legend >网站累计</legend>
@@ -29,7 +30,7 @@
       </fieldset>
     </section>
     <section>
-      <fieldset>
+      <fieldset class="install">
         <legend >安装量目标预估</legend>
         <install-target></install-target>
       </fieldset>
@@ -69,6 +70,7 @@
       console.log(windowHeight)
       let fieldset = document.getElementsByTagName('fieldset')
       for(let key of fieldset){
+//        fieldset 宽度设置
         key.style.height=windowHeight*0.3 + 'px'
       }
     }
@@ -79,7 +81,6 @@
   article{
     overflow: hidden;
     padding:0 1%;
-
   }
 section{
   width: 100%;
@@ -92,6 +93,8 @@ section{
   height:99%;
   overflow:hidden;
 }
+
+
   header{
     border-bottom:1px dotted #006ce1;
     width: 100%;
@@ -113,7 +116,13 @@ section{
   }
   #app-count >div{
     display:inline-block;
-    width:45%;
+    width:100%;
+    height:99%;
+    overflow:hidden;
+  }
+  fieldset>div{
+    display:inline-block;
+    width:100%;
     height:99%;
     overflow:hidden;
   }
@@ -133,5 +142,8 @@ section{
   }
   legend{
     margin-left: 25px;
+  }
+  .install{
+
   }
 </style>

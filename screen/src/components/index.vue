@@ -304,7 +304,6 @@ middle>div{
     height: 100%;
   }
 .line-gradient {
-
   border: 2px solid;
   border-image: -webkit-linear-gradient(to right, #5c9dfc, #48c8ef, #41d6eb, #5d9afd) 30 30;
   border-image: -moz-linear-gradient(to right, #5c9dfc, #48c8ef, #41d6eb, #5d9afd) 30 30;

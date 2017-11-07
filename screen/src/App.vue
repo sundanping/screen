@@ -23,9 +23,9 @@ export default {
     let windowHeight = window.innerHeight
     console.log(windowHeight)
     document.getElementById('app').style.height=windowHeight + 'px'
-    window.onresize = function(){
-      window.location.reload()
-    }
+//    window.onresize = function(){
+//      window.location.reload()
+//    }
 
     var canvas = document.getElementById('canvas'),
   ctx = canvas.getContext('2d'),
@@ -36,7 +36,6 @@ export default {
   stars = [],
   count = 0,
   maxStars = 500;//星星数量
-
 var canvas2 = document.createElement('canvas'),
   ctx2 = canvas2.getContext('2d');
 canvas2.width = 100;
@@ -128,6 +127,8 @@ function animation() {
 }
 
 animation();
+
+
   }
 }
 </script>
@@ -140,22 +141,26 @@ animation();
   width: 100%;
   height: 100%;
   min-width: 959px;
-  min-height: 768px;
+  min-height: 760px;
+  position: relative;
 }
-canvas{
+#canvas{
+  width: 100%;
+  height: 100%;
   position: absolute;
   z-index:-1;
 }
 </style>
-
-
-
 <style>
   *{
     margin:0;
     padding:0;
   }
-
+canvas,video{
+  display: inline-block;
+  vertical-align: baseline;
+  overflow: hidden;
+}
   div,p,h1,h2,span,img,button{
     margin:0;
     padding:0;
@@ -165,10 +170,17 @@ canvas{
     box-sizing: border-box;
   }
   html{
-    min-width: 1240px;
+    min-width: 980px;
   }
   a{
     text-decoration: none;
+  }
+  fieldset {
+    border: 1px solid;
+    border-image: -webkit-linear-gradient(to right, #5c9dfc, #48c8ef, #41d6eb, #5d9afd) 30 30;
+    border-image: -moz-linear-gradient(to right, #5c9dfc, #48c8ef, #41d6eb, #5d9afd) 30 30;
+    border-image: linear-gradient(to right, #5c9dfc, #48c8ef, #41d6eb, #5d9afd) 30 30;
+    border-image: linear-gradient(to right, #5c9dfc, #48c8ef, #41d6eb, #5d9afd) 30 30;
   }
   legend{
     font-size:18px;

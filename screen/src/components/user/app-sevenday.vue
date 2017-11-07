@@ -13,7 +13,7 @@
        msg: [
           {
             type: 'value',
-            name: '数量',
+            name: '数量i',
             axisLine: {
               lineStyle: {
                 color: ['#71a4f2'],
@@ -56,7 +56,7 @@
             text: '堆叠区域图',
             color:'#fff'
           },
-          color: ['#8d6cf9', '#f36764', '#fc8e26', '#14da7e'],
+          color: ['#60f07c', '#f86600', '#fc8e26', '#14da7e'],
           legend: {
             center: 'center',
             top: '3',
@@ -142,13 +142,21 @@
     flex-basis: 100%;
     position: relative;
     padding: 5px;
-    overflow: hidden;}
-  .contents{
-    height: 100% ;
+    overflow: auto;
+  }
+  .lists>div{
+    float: left;
     width: 100%;
+    overflow: hidden;
+    /*溢出处理*/
   }
-  .contents>#myChart1{
-    min-width: 200px;
-  }
+
+  /*.contents{*/
+    /*height: 100% ;*/
+    /*width: 100%;*/
+  /*}*/
+  /*.contents>#myChart1{*/
+    /*min-width: 200px;*/
+  /*}*/
 
 </style>
