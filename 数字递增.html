@@ -1,0 +1,279 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />   -->
+<script type="text/javascript">  
+    function jsonpCallback(result) {  
+        console.log(result);  
+         
+    //     for(var i in result) {  
+    //         console.log(i+":"+result[i]);//循环输出a:1,b:2,etc.  
+    //     }  
+     }  
+</script>  <!-- 
+<script type="text/javascript" src="http://crossdomain.com/services.php?callback=jsonpCallback"></script> -->
+		<script type="text/javascript" src=
+'http://operate.tw.live.hoge.cn/index.php?callback=jsonpCallback&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&m=Apituwenol&c=tuwenol&a=show'></script>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.par{
+			width: 100%;
+			height: 200px
+			;
+			
+			background: #999;
+			overflow-x: hidden;
+
+		}
+		.par>div{
+			width: 100%;
+			height: 199px;
+			overflow-x: scroll;
+			white-space:nowrap;
+		}
+		.par>div>p{
+			width: 120px;
+			height: 180px
+			;
+			display: inline-block;
+			background: blue;
+		}
+		.p02,.p04,.p06{
+			background-color: red;
+
+		}
+		article> div{
+			display: inline-block;
+			width: 25%;
+			float:left;
+			height: 300px;
+			background-color:red;
+			margin-right:23px;
+		}
+	</style>
+</head>
+<body>
+<div id='num'>99</div>
+<div id='num2'>999</div>
+<div id='num3'>459.23</div>
+	<article>
+		<div id='d1'></div>
+		<div id='d2'></div>
+		<div id='d3'></div>
+	</article>
+	<button id='left' disabled="false" onclick="left2()"><</button>
+	<button id='right'>>></button>
+
+		
+
+
+	<script type="text/javascript">
+	// function jsonpCallback(data){return data} 
+	let ass=jsonpCallback()
+	console.log(ass)
+
+	 	var color = '#333'
+	var asss= [
+    '<span style="',
+    `background-color:${color};`,
+    'display: inline-block;',
+    'width: 10px;',
+    'height: 10px;',
+    'border-radius: 50%;',
+    'margin-right:2px;',
+    '"></span>'
+  ].join('');
+  console.log(asss)
+		var arr = [a,b,c] = ['red','blue','yellow' ];
+		onload=function(){
+			
+			function left3(){
+				console.log(234)
+			}
+
+
+			arr = [c,b,a]
+			console.log(arr);
+			var d1 =document.getElementById('d1');
+			var d2 =document.getElementById('d2');
+			var d3 =document.getElementById('d3');
+			d1.style.backgroundColor=arr[0]
+			d2.style.backgroundColor=arr[1]
+			d3.style.backgroundColor=arr[2]
+		}
+		var left =document.getElementById('left');
+		var right =document.getElementById('right');
+		function left2(){
+				var a1 = arr[0];
+				arr = arr.slice(1);
+				arr.push(a1)
+
+			d1.style.backgroundColor=arr[0]
+			d2.style.backgroundColor=arr[1]
+			d3.style.backgroundColor=arr[2]
+			// left.attributes.disabled = true;
+			tm()
+		};
+		right.onclick=function(){
+				var a1 = arr[2];
+				 arr.length=2;
+				arr.unshift(a1)
+			console.log(arr)
+			d1.style.backgroundColor=arr[0]
+			d2.style.backgroundColor=arr[1]
+			d3.style.backgroundColor=arr[2]
+		}
+
+		function tm(){setTimeout(left2,2000)}
+	tm()
+	addnumber('num')
+	addnumber('num2')
+	addnumber('num3')
+
+
+
+// 数字递增函数 调用方法  addnumber('id') 穿id即可 此方法只适用于整数，小数，%不可用
+
+		function $(a){
+				return document.getElementById(a)
+				//获取id
+			}
+
+			function addnumber(aa){
+				let num =$(aa).innerHTML*1
+				let mm =1;
+				let aaaas=0;
+			function addnum(){setTimeout(function(){
+
+				aaaas++;
+				$(aa).innerHTML=aaaas
+				if(aaaas<num){
+					if( num>20 && aaaas > num -20){
+						mm+= 10;
+					}
+				addnum()
+				}
+			},mm)}
+			addnum()
+}
+
+
+function add(a,b){
+  return a+b;  
+}
+function sub(a,b){
+  return a-b;  
+}
+var a1 = add.apply('ads',[4,5]);　　//sub调用add的方法
+var a2 = sub.apply(add,[4,2]);
+alert(a1);  //6     
+alert(a2);  //2,
+
+function Animal(name){
+  this.name = name;
+  this.showName = function(){
+        alert(this.name);    
+    }    
+}
+
+function Cat(name){
+  Animal.apply(this,[name]);  
+   // Animal.call(this,name);   // 
+}
+
+var cat = new Cat("咕咕");
+cat.showName();
+
+/*call的用法*/
+Animal.call(this,name);
+
+
+
+var arrges=[{name:'juzi',age:23},{name:'pingping',age:9},{name:'laozhang',age:26},{name:'jianing',age:13}]
+for(let i of arrges){
+	console.log(i)
+}
+</script>
+</body>
+</html> 
+<!--
+
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-">
+  <title>最简单的轮播广告</title>
+  <style>
+  #scroll{width:100%; height:180px; background-color:white; position:relative;border-bottom:1px solid gray;}
+#scroll ul{height:180px; list-style:none;}
+#scroll ul li{width:100%; height:180px;margin:0px; padding:0px; display:none;}
+ .subl{position:absolute; bottom:20px; left:40%; width:80px;height:20px; line-height:20px; text-align:center;font-size:16px;font-weight:bold; cursor:pointer;}
+ .subr{
+position:absolute;
+bottom:20px; right:40%;
+width:80px;height:20px; line-height:20px; text-align:center;font-size:16px;font-weight:bold;cursor:pointer; 
+.subr:hover{ background:yellow;border-radius:10px;}
+.subl:hover{ background:yellow;border-radius:10px;}
+  </style>
+ </head>
+ <body>
+ <div id="scroll">
+ <p class="subl">上一张<p/>
+ <p class="subr">下一张<p/>
+ <ul>
+ <li style="background:red;display:block;"></li>
+　//上面的ｌｉ要设定为显示，因为是第一张图片．
+ <li style="background:green;"></li>
+ <li style="background:gray;"></li>
+ <li style="background:orange;"></li>
+ </ul>
+ </div>
+ <script>
+  var box=document.getElementById('box');
+  var uls=document.getElementsByTagName('ul');
+  var imgs=uls[0].getElementsByTagName('li');
+  var btn=uls[1].getElementsByTagName('li');
+  var i='',index=''; //中间量，统一声明；
+  var play=null;
+  console.log(box,uls,imgs,btn);//获取正确
+  //图片切换, 淡入淡出效果我是用（transition: opacity .s linear）做的,不纠结、简单 在css里面
+  function show(a){    //方法定义的是当传入一个下标时，按钮和图片做出对的反应
+   for(i=0;i<btn.length;i++ ){
+    btn[i].className='';  //很容易看懂吧？每个按钮都先设置成看不见，然后把当前按钮设置成可见。
+    btn[a].className='current';
+   }
+   for(i=;i<imgs.length;i++){ //把图片的效果设置和按钮相同
+    imgs[i].style.opacity=;
+    imgs[a].style.opacity=;
+   }
+  }
+  //切换按钮功能，响应对应图片
+  for(i=;i<btn.length;i++){
+   btn[i].index=i; //不知道你有没有发现，循环里的方法去调用循环里的变量体i，会出现调到的不是i的变动值的问题。所以我先在循环外保存住
+   btn[i].onmouseover=function(){
+    show(this.index);
+    clearInterval(play); //这就是最后那句话追加的功能
+   }
+  }
+  //自动轮播方法
+ function autoPlay(){
+    play=setInterval(function(){ //这个paly是为了保存定时器的，变量必须在全局声明 不然其他方法调不到 或者你可以调用auto.play 也许可以但是没时间试了
+    index++;
+    index>=imgs.length&&(index=);//可能有优先级问题，所以用了括号，没时间测试了。
+    show(index);
+   },)
+  }
+  autoPlay();//马上调用，我试过用window.onload调用这个方法，但是调用之后影响到了其他方法，使用autoPlay所以只能这样调用了
+  //div的鼠标移入移出事件
+  box.onmouseover=function(){
+   clearInterval(play);
+  };
+  box.onmouseout=function(){
+   autoPlay();
+  };
+  //按钮下标也要加上相同的鼠标事件，不然图片停止了，定时器没停，会突然闪到很大的数字上。 貌似我可以直接追加到之前定义事件中。
+ </script>
+ </body>
+ </html>
