@@ -1,17 +1,22 @@
 <template>
   <div class="lists">
+    <div id="website" :style="{width: '100%', height: '90%'}"></div>
+    <div :style="{width: '100%', height: '90%'}">
+      <leiji></leiji>
+    </div>
 
-    <div id="website" :style="{width: '100%', height: '100%'}"></div>
   </div>
-
 </template>
 <script>
   let clue = require('../../json/clue.json')
+  import leiji from './leiji'
   export default {
     name: 'website',
+    components:{
+      leiji
+    },
     data () {
       return {
-        nav: [{name: '互联网'}, {name: '微信'}],
         lists: clue.data,
         msg:[  '已完成', '已归档']
       }
@@ -19,16 +24,16 @@
     created () {
     },
     mounted () {
-      let clientW = document.body.clientWidth
-      let clientH = document.body.clientHeight
-      document.getElementById('website').style.width=clientW*0.47/2.2+ 'px'
-      document.getElementById('website').style.height=clientH*0.3+ 'px'
+      let clientW = window.innerwidth
+      let clientH = window.innerHeight
+      document.getElementById('website').style.width=clientW*0.46/2.2+ 'px'
+      document.getElementById('website').style.height=clientH*0.26+ 'px'
       this.drawLine()
     },
     computed: {
     },
     methods:{
-
+//
       drawLine () {
         let myChart = this.$echarts.init(document.getElementById('website'))
         // 绘制图表
@@ -50,7 +55,7 @@
             {
 //              name: '任务统计',
               type: 'pie',
-              radius: ['50%', '70%'], // 圆环
+              radius: ['50%', '70%',, '40%'], // 圆环
               avoidLabelOverlap: false,
               label: {
                 normal: {
@@ -91,18 +96,19 @@
   .lists{
     width: 100%;
     height: 100%;
-    flex-basis: 100%;
-    position: relative;
     padding: 5px;
+    display: flex;
     overflow: hidden;}
   .contents{
     height: 100% ;
     width: 100%;
   }
-  #website{
-    posotion:relative;
-
+  .lists div{
+    flex:1;
+    width: 100%;
+    overflow: hidden;
   }
+
   </style>
 
 

@@ -8,18 +8,18 @@
   export default {
     name: 'websiteSeven',
     mounted() {
-      let clientW = document.body.clientWidth
-      let clientH = document.body.clientHeight
+      let clientW = window.innerwidth
+      let clientH = window.innerHeight
       document.getElementById('myChart2').style.width=clientW*0.47+ 'px'
       document.getElementById('myChart2').style.height=clientH*0.3+ 'px'
       this.drawLine()
     },
     methods: {
-
       drawLine() {
         // 基于准备好的dom，初始化echarts实例
         let myChart = this.$echarts.init(document.getElementById('myChart2'))
-        // 绘制图表
+        // 绘制图表、
+        window.onresize = myChart.resize;//自适应
         myChart.setOption({
           color: ['#8d6cf9', '#f36764', '#fc8e26', '#14da7e'],
           legend: {
@@ -28,7 +28,7 @@
             textStyle: {
               color: '#fff'
             },
-            data: [ '视频', '专题', '图集']
+            data: [ '视频啊', '专题', '图集']
           },
           tooltip: {
             trigger: 'axis'
@@ -50,9 +50,17 @@
               axisLine: {
                 lineStyle: {
                   color: ['#71a4f2'],
-                  width: '1',
+                  width: '2',
                   type: 'solid'
                 }
+              },
+              splitLine: {//网格线
+                lineStyle: {// 网格线color
+                  color: ['rgba(113,164,242,0.3)']
+                },
+                width: '1',
+                type: 'solid',
+                show: true
               },
               axisTick: {
                 show: false,
@@ -68,7 +76,7 @@
               axisLine: {
                 lineStyle: {
                   color: ['#71a4f2'],
-                  width: '1',
+                  width: '2', //边线宽度
                   type: 'solid'
                 }
               },
@@ -80,7 +88,7 @@
                 lineStyle: {
                   color: ['rgba(113,164,242,0.3)'],
                   width: '1',
-                  type: 'dashed'
+//                  type: 'dashed'
                 }
               },
               axisPointer: {
@@ -91,7 +99,7 @@
           series: [
 
             {
-              name: '视频',
+              name: '视频啊',
               type: 'line',
               smooth: true,
               stack: '总量',

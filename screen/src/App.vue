@@ -152,9 +152,19 @@ animation();
 }
 </style>
 <style>
+  html{
+    font-size:10px;
+  }
   *{
     margin:0;
     padding:0;
+  }
+  ul{
+    list-style:none;
+    margin:0;padding:0;
+  }
+  li{
+
   }
 canvas,video{
   display: inline-block;
@@ -176,6 +186,7 @@ canvas,video{
     text-decoration: none;
   }
   fieldset {
+    width: 100%;
     border: 1px solid;
     border-image: -webkit-linear-gradient(to right, #5c9dfc, #48c8ef, #41d6eb, #5d9afd) 30 30;
     border-image: -moz-linear-gradient(to right, #5c9dfc, #48c8ef, #41d6eb, #5d9afd) 30 30;
@@ -185,5 +196,12 @@ canvas,video{
   legend{
     font-size:18px;
   }
-
+.float-left{
+  float:left;
+  text-indent:2rem;
+}
+  .float-right{
+    float:right;
+    padding-right:2rem;
+  }
 </style>

@@ -15,8 +15,12 @@
     </section>
     <section>
       <div class="prediction prediction-div">
-        <span> 预估目标：</span><input style="margin-right: 20px" class="prediction-result" type="text">
-        <span> 预估结果：</span><input  class="prediction-result" type="text">
+        <div style="display: inline-block; margin-bottom:4px;"><span> 预估目标：</span>
+          <input style="margin-right: 20px" class="prediction-result" type="text">
+        </div>
+        <div style="display: inline-block ; margin-bottom:4px;"><span> 预估结果：</span>
+          <input class="prediction-result" type="text">
+        </div>
       </div>
     </section>
     <section>

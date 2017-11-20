@@ -6,20 +6,25 @@
         <h1>
           累计安装量{{install[0]}}
         </h1>
-        <div name="count" id="install" class="prediction-linear-user"></div>
+        <div style="background-color: #666;z-index: 5">
+         <div name="count" id="install" class="prediction-linear-user"></div>
+        </div>
       </div>
       <div class="count-install">
         <h1>
           累计启动量{{install[1]}}
         </h1>
-
-        <div name="count" id="start-up" class="prediction-linear-user"></div>
+        <div style="background-color: #666">
+          <div name="count" id="start-up" class="prediction-linear-user"></div>
+        </div>
       </div>
       <div class="count-install">
         <h1>
           累计注册量{{install[2]}}
         </h1>
-        <div name="count" id="regist" class="prediction-linear-user"></div>
+       <div style="background-color: #666">
+         <div  name="count" id="regist" class="prediction-linear-user"></div>
+       </div>
       </div>
     </div>
   </div>
@@ -31,9 +36,8 @@
     name: 'totalApp',
     data() {
       return {
-        nav: [{name: '互联网'}, {name: '微信'}],
         lists: clue.data,
-        msg: ['待核', '已完成', '已归档'],
+        msg: ['待核s', '已完成', '已归档'],
         install: [232, 344, 453],
         ff: 298,
         demoNum: [2.56 , 1, 0]
@@ -44,10 +48,10 @@
     mounted() {
       setTimeout(this.getWidth, 2500)
       this.setHeight()
-      let clientW = document.body.clientWidth
-      let clientH = document.body.clientHeight
-      this.getId('mission').style.width = clientW * 0.47 / 2.2 + 'px'
-      this.getId('mission').style.height = clientH * 0.3 + 'px'
+      let clientW = window.innerWidth
+      let clientH = window.innerHeight
+      this.getId('mission').style.width = clientW * 0.47 / 2 + 'px'
+      this.getId('mission').style.height = clientH * 0.29 + 'px'
       this.drawLine()
     },
     computed: {},
@@ -61,11 +65,11 @@
         this.setHeight()
       },
       setHeight() {
-        let maxValue = Math.max.apply(null, this.install);
+        let maxValue = Math.max(...this.install);
         if (maxValue > 0) {
-          this.getId('install').style.width = (this.install[0] / maxValue) * 100 + '%'
-          this.getId('start-up').style.width = this.install[1] / maxValue * 100 + '%'
-          this.getId('regist').style.width = this.install[2] / maxValue * 100 + '%'
+          this.getId('install').style.width = (this.install[0] / maxValue) * 100 + '%'||30+'px'
+          this.getId('start-up').style.width = this.install[1] / maxValue * 100 + '%'||30+'px'
+          this.getId('regist').style.width = this.install[2] / maxValue * 100 + '%'||30+'px'
         } else {
           let countWidth = document.getElementsByName('count')
           for (let i of countWidth) {
@@ -120,7 +124,7 @@
                 }
               },  // 移入之后折线
               data: [
-                {value: 274, name: '待核'},
+                {value: 274, name: '待核s'},
                 {value: 235, name: '已完成'},
                 {value: 400, name: '已归档'}
               ]
@@ -153,8 +157,8 @@
     width: 100%;
   }
 
-  .contents > #myChart1 {
-    min-width: 200px;
+  .contents > #mission {
+    /*min-width: 200px;*/
     color: red;
   }
 
@@ -170,19 +174,30 @@
     overflow: hidden;
   }
 
-  .count-install > div {
+  .count-install  div {
     border-radius: 6px;
     height: 12px;
-  }
+    position: relative;
 
+  }
+  .count-install> div> div{
+    position:absolute;
+  }
   h1 {
     font-size: 18px;
   }
 
   .prediction-linear-user {
+    display: inline-block;
+    z-index: 10;
     background: -webkit-linear-gradient(to right, #5c9dfc, #5d9afd); /* Safari 5.1 - 6.0 */
     background: -o-linear-gradient(to right, #5c9dfc, #5d9afd); /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(to right, #5c9dfc, #5d9afd); /* Firefox 3.6 - 15 */
     background: linear-gradient(to right, #5c9dfc, #5d9afd); /* 标准的语法（必须放在最后） */
   }
 </style>
+<style>
+  #mission > div canvas
+  {
+  top: -14%!important;
+}</style>

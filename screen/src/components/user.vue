@@ -1,7 +1,7 @@
 <template>
   <article>
     <header>
-      <span >{{userStatistics}}</span>
+      <span>{{userStatistics}}</span>
       <span @click="$router.go(-1)">{{goBack}}</span>
     </header>
     <section >
@@ -12,21 +12,24 @@
       </fieldset>
       <fieldset id="web">
         <legend >网站累计</legend>
-        <div>
-          <website></website>
+         <div style="width: 100%">
+           <website></website>
+         </div>
 
-        </div>
-        <div></div>
       </fieldset>
     </section>
     <section>
-      <fieldset>
+      <fieldset class="app-seven">
         <legend >APP近七日日均</legend>
-        <app-seven></app-seven>
+        <div style="width:100%"><app-seven></app-seven> </div>
+
       </fieldset>
       <fieldset>
         <legend >网站近七日日均</legend>
-        <website-seven></website-seven>
+        <div >
+          <website-seven></website-seven>
+        </div>
+
       </fieldset>
     </section>
     <section>
@@ -93,8 +96,6 @@ section{
   height:99%;
   overflow:hidden;
 }
-
-
   header{
     border-bottom:1px dotted #006ce1;
     width: 100%;
@@ -128,17 +129,16 @@ section{
   }
   fieldset{
     /*清除浮动*/
+    position: relative;
     box-sizing: border-box;
     width: 49%;
     height: 30%;
     display: inline-block;
-    border-radius: 6px;
     overflow: hidden;
-
   }
 
   section fieldset:nth-child(even){
-    margin-left: 1%;
+    left: 1%;
   }
   legend{
     margin-left: 25px;

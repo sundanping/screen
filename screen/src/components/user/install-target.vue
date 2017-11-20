@@ -15,12 +15,15 @@
     </section>
     <section>
       <div class="prediction prediction-div">
-       <span> 预估目标：</span><input style="margin-right: 20px" class="prediction-result" type="text">
-       <span> 预估结果：</span><input style="color: red;" disabled="disabled" class="prediction-result" type="text" v-model="result">
+      <div style="display: inline-block; margin-bottom:4px;"> <span> 预估目标：</span>
+        <input style="margin-right: 20px" class="prediction-result" type="text"></div>
+        <div style="display: inline-block ; margin-bottom:4px;"><span> 预估结果：</span>
+          <input style="color: red;" disabled="disabled" class="prediction-result" type="text" v-model="result"></div>
       </div>
     </section>
     <section>
       <div class="prediction prediction-div">
+        <!--<el-button class="a">提交评估</el-button>-->
         <input style="border: 0;" class="prediction-result prediction-linear" value="提交评估" type="button">
         <span style="position: relative" class="can-finish"><span>可以完成</span>
           <img src="../../assets/img/can-t.png" alt="">
@@ -57,13 +60,6 @@
               date.setTime(date.getTime() - 3600 * 1000 * 24);
               picker.$emit('pick', date);
             }
-          }, {
-            text: '一周前',
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit('pick', date);
-            }
           }]
         },
         value1: ''
@@ -86,7 +82,10 @@
     display: inline-block;
     background-color: #333333;
   }
-
+  .prediction-result:active{
+    transform:scale(1.05);
+    -webkit-transform:scale(1.05);
+  }
   article {
     height: 100%;
     padding: 5% 8%;
@@ -127,6 +126,8 @@
 </style>
 <style>
   /*日期选择器样式修改 BEGIN*/
+  input,button,select,textarea{outline:none;}
+
   .el-button + .el-button span, .el-date-table td div span {
     color: #5a5e66;
   }
