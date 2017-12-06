@@ -11,14 +11,14 @@
             msg: ['测试', '已完成', '已归档'],
             install: [232, 344, 453],
             shuju: [
-              {value: 735, name: '测试'},
+              {value: 235, name: '测试'},
               {value: 735, name: '已完成'},
               {value: 400, name: '已归档'}
             ]
           }
         },
         mounted() {
-          let clientW = window.innerwidth
+          let clientW = window.innerWidth
           let clientH = window.innerHeight
           document.getElementById('press-number').style.width = clientW * 0.3 + 'px'
           document.getElementById('press-number').style.height = clientH * 0.27 + 'px'

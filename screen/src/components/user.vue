@@ -7,7 +7,7 @@
     <section >
       <fieldset id="app-count">
         <legend >APP累计</legend>
-        <div><total-app></total-app></div>
+        <div><total-app :app="response"></total-app></div>
 
       </fieldset>
       <fieldset id="web">
@@ -21,7 +21,7 @@
     <section>
       <fieldset class="app-seven">
         <legend >APP近七日日均</legend>
-        <div style="width:100%"><app-seven></app-seven> </div>
+        <div style="width:100%"><app-seven :message="userStatistics"></app-seven> </div>
 
       </fieldset>
       <fieldset>
@@ -65,10 +65,12 @@
     data() {
       return {
         userStatistics: '用户统计',
-        goBack: '返回'
+        goBack: '返回',
+        response:''
       }
     },
     mounted () {
+      this.getInformation()
       let windowHeight = window.innerHeight
       console.log(windowHeight)
       let fieldset = document.getElementsByTagName('fieldset')
@@ -76,6 +78,20 @@
 //        fieldset 宽度设置
         key.style.height=windowHeight*0.3 + 'px'
       }
+    },
+    methods : {
+      getInformation () {
+        let that = this
+        this.$http.get(this.httpApi+'/showapp')
+          .then(function (response) {
+            that.response = response.data[0]
+            console.log(that.response)
+
+          })
+          .catch(function (err) {
+            console.log(err)
+          })
+      },
     }
   }
 </script>

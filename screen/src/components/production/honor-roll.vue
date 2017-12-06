@@ -17,7 +17,7 @@
         msg: ['测试', '已完成', '已归档'],
         install: [232, 344, 453],
         shuju: [
-        {value: 735, name: '测试'},
+        {value: 335, name: '测试'},
         {value: 735, name: '已完成'},
         {value: 400, name: '已归档'}
       ]

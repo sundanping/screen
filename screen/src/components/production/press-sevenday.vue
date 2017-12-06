@@ -14,7 +14,7 @@
       }
     },
     mounted() {
-      let clientW = window.innerwidth
+      let clientW = window.innerWidth
       let clientH = window.innerHeight
       document.getElementById('press-seven').style.width = clientW * 0.6 + 'px'
       document.getElementById('press-seven').style.height = clientH * 0.24 + 'px'

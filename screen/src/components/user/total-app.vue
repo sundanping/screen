@@ -1,6 +1,7 @@
 <template>
   <div class="lists">
-    <div id="mission" :style="{width: '100%', height: '100%'}"></div>
+    <div id="mission" :style="{width: '100%', height: '100%'}">
+    </div>
     <div class="lists-right">
       <div class="count-install">
         <h1>
@@ -34,18 +35,66 @@
   let clue = require('../../json/clue.json')
   export default {
     name: 'totalApp',
+    props:['app'],
     data() {
       return {
         lists: clue.data,
-        msg: ['待核s', '已完成', '已归档'],
         install: [232, 344, 453],
         ff: 298,
-        demoNum: [2.56 , 1, 0]
+        demoNum: [2.56 , 1, 0],
+//        pie 图数据
+        option: {
+          tooltip: {
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+          },
+          color: ['#1f6aed', '#49abdc'],
+          legend: {
+            orient: 'vertical',
+            x: 'right',
+            y:'bottom',
+            textStyle: {
+              color: '#fff'
+            },
+            data:['Android','IOS']
+          },
+          series: [
+            {
+              name:'访问来源',
+              type:'pie',
+              radius: ['50%', '70%'],
+              avoidLabelOverlap: false,
+              label: {
+                normal: {
+                  show: false,
+                  position: 'center'
+                },
+                emphasis: {
+                  show: true,
+                  textStyle: {
+                    fontSize: '30',
+                    fontWeight: 'bold'
+                  }
+                }
+              },
+              labelLine: {
+                normal: {
+                  show: false
+                }
+              },
+              data:[
+                {value:22, name:'Android'},
+                {value:22, name:'IOS'},
+              ]
+            }
+          ]
+        }
+
       }
     },
     created() {
     },
     mounted() {
+      console.log(this.option.series[0].data)
       setTimeout(this.getWidth, 2500)
       this.setHeight()
       let clientW = window.innerWidth
@@ -60,7 +109,7 @@
       getWidth() {
         console.log(this.install)
 //        this.install[1]= 604
-//        this.$set(this.install, 0, this.ff)//监听到数组变化渲染到页面，或者页面头部渲染ff亦可
+//        this.$set(this.install, 0, this.ff)//监听到数组变化渲染到页面，
         this.install.splice(0, 3, ...this.demoNum)//监听到数组变化渲染到页面，或者页面头部渲染ff亦可
         this.setHeight()
       },
@@ -76,67 +125,37 @@
             i.style.width = 2 + 'px'
           }
         }
-
       },
       drawLine() {
         let myChart = this.$echarts.init(document.getElementById('mission'))
         // 绘制图表
-        myChart.setOption({
-          color: ['#77173e', '#C14964', '#dB9DBB'],
-          textStyle: {
-            color: '#fff'
-          },
-          legend: {
-            orient: 'vertical', // 图例列表的布局朝向。
-            x: 'right',
-            y: 'bottom',
-            textStyle: {
-              color: '#fff'
-            },
-            data: this.msg
-          },
-          series: [
-            {
-//              name: '任务统计',
-              type: 'pie',
-              radius: ['50%', '70%', '40%'], // 圆环
-              avoidLabelOverlap: false,
-              label: {
-                normal: {
-                  show: true,
-                  formatter: ' {d}%',
-                  textStyle: {
-                    fontSize: '14',
-                    fontWeight: 'bold'
-                  }
-                },
-                emphasis: {
-                  show: true,
-                  textStyle: {
-                    fontSize: '16',
-                    fontWeight: 'bold'
-                  }
-                }
-              },  // 折线
-              labelLine: {
-                normal: {
-                  show: true
-                }
-              },  // 移入之后折线
-              data: [
-                {value: 274, name: '待核s'},
-                {value: 235, name: '已完成'},
-                {value: 400, name: '已归档'}
-              ]
-            }
-          ]
-        })
+        myChart.setOption(this.option)
       }
     },
-    watch: {}
+    watch: {
+      app(newVal,oldVal){
+        let newarr=[
+          {value:newVal.android_install_accumulate , name:'Android'},
+          {value:newVal.ios_install_accumulate , name:'IOS'},
+        ]
+
+
+        Vue.set(this.option.series[0].data,0, {value:newVal.android_install_accumulate , name:'Android'})
+        Vue.set(this.option.series[0].data,1, {value:newVal.ios_install_accumulate , name:'Android'})
+
+//        this.option.series[0].data.splice(0, 2, ...newarr)
+//        this.ff=newVal.android_install_accumulate
+       console.log(this.option.series[0].data)
+  },deep:true
+    }
   }
 </script>
 <style scoped>
+  .grayscale{
+    -webkit-filter:grayscale(1);
+    filter:grayscale(1);
+  }
+
   .lists {
     width: 100%;
     height: 100%;

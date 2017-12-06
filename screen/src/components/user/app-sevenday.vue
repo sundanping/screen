@@ -2,12 +2,15 @@
   <article class="lists">
 <div class="contents" :style="{width: '100%', height: '100%'}">
   <div id="myChart1" ></div>
+  <!--<h1>{{message}}</h1>-->
 </div>
+
   </article>
 </template>
 <script>
   export default {
     name: 'appSeven',
+    props:['message'],
     data() {
       return {
        msg: [
@@ -41,6 +44,8 @@
       }
     },
     mounted() {
+      console.log(this.message)
+
       let clientW = window.innerwidth
       let clientH = window.innerHeight
       document.getElementById('myChart1').style.width=clientW*0.47+ 'px'
@@ -55,7 +60,7 @@
 //        window.onresize = myChart.resize//自适应
         myChart.setOption({
           title: {
-//            text: '堆叠区域图',
+            text: this.message,
             color:'#fff'
           },
           color: ['#60f07c', '#f86600', '#fc8e26', '#14da7e'],

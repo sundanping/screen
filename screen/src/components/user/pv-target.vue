@@ -49,17 +49,25 @@
               picker.$emit('pick', new Date());
             }
           }, {
-            text: '昨天',
+            text: '明天',
             onClick(picker) {
               const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              date.setTime(date.getTime() +3600 * 1000 * 24);
               picker.$emit('pick', date);
             }
-          }, {
-            text: '一周前',
+          },
+            {
+              text: '两天后',
+              onClick(picker) {
+                const date = new Date();
+                date.setTime(date.getTime() +3600 * 1000 * 24*2);
+                picker.$emit('pick', date);
+              }
+            },{
+            text: '一周后',
             onClick(picker) {
               const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              date.setTime(date.getTime() +3600 * 1000 * 24 * 7);
               picker.$emit('pick', date);
             }
           }]
@@ -70,6 +78,7 @@
   }
 </script>
 <style scoped>
+
   div.prediction {
     margin-top: 20px;
   }

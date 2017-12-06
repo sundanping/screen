@@ -39,22 +39,29 @@
 
       <section class="production-right">
         <!--top-->
-        <div style="margin-left:0; ">
+        <div style="margin-left:0 ">
           <fieldset>
             <legend>本周光荣榜</legend>
-            <aside >
-              <honor-top></honor-top>
-            </aside>
-            <aside >
-              <honor-last></honor-last>
-            </aside>
+            <div style="height: 100%">
+              <aside >
+                <honor-top></honor-top>
+              </aside>
+              <aside >
+                <honor-last></honor-last>
+              </aside>
+            </div>
           </fieldset>
         </div>
         <!--bottom-->
         <div style="margin-left:0; ">
-          <fieldset>
-            <legend>本周TOP10</legend>
-          </fieldset>
+          <from>
+            <fieldset>
+              <legend>本周TOP8</legend>
+              <div class="top-8"  style="height:100%;">
+                <top-eight></top-eight>
+              </div>
+            </fieldset>
+          </from>
         </div>
       </section>
     </section>
@@ -69,6 +76,7 @@
   import topEight from './production/top8'
   import honorTop from './honor/honor-top'
   import honorLast from './honor/honor-last'
+
   export default {
     name: 'production',
     components: {
@@ -77,6 +85,7 @@
       pressSevenday,
       visitOneday,
       visitNumber,
+      topEight,
       honorTop,
       honorLast
     },
@@ -104,10 +113,7 @@
     padding:1%;
     height: 100%;
   }
-.visit #div{
-  width:100%;
-  height:100%;
-}
+
   header{
     border-bottom:1px dotted #006ce1;
     width: 100%;
@@ -174,7 +180,10 @@ fieldset{
   legend{
     margin-left: 6%;
   }
-  aside{
-    height:50%;
+  .production-right div fieldset aside{
+    height:46%;
+  }
+  .top-8 >div{
+
   }
 </style>
