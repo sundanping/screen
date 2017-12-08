@@ -21,7 +21,6 @@ export default {
   mounted () {
 //    获取屏幕高度
     let windowHeight = window.innerHeight
-    console.log(windowHeight)
     document.getElementById('app').style.height=windowHeight + 'px'
 //    window.onresize = function(){
 //      window.location.reload()
@@ -188,6 +187,7 @@ canvas,video{
   fieldset {
     width: 100%;
     border: 1px solid;
+
     border-image: -webkit-linear-gradient(to right, #5c9dfc, #48c8ef, #41d6eb, #5d9afd) 30 30;
     border-image: -moz-linear-gradient(to right, #5c9dfc, #48c8ef, #41d6eb, #5d9afd) 30 30;
     border-image: linear-gradient(to right, #5c9dfc, #48c8ef, #41d6eb, #5d9afd) 30 30;
@@ -204,4 +204,7 @@ canvas,video{
     float:right;
     padding-right:2rem;
   }
+</style>
+<style>
+
 </style>

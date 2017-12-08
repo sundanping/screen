@@ -2,7 +2,7 @@
   <div class="left-top8">
     <div>
       <span>标题</span>
-      <span>访问量</span>
+      <span class="float-right">访问量</span>
     </div>
     <span v-for="i in 8">
       <div>
@@ -58,4 +58,7 @@ export default{
     top:20%;
     border-radius: 10px;
   }
+.float-right{
+  float:right;
+}
 </style>

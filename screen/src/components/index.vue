@@ -5,12 +5,12 @@
     <!--bannner 图片BEGIN-->
     <section class="banner">
 
-      <router-link :to="{path:'/'+ bannerBackGround[0].name}">
+      <router-link :to="{path:'/'+ bannerBackGround[1].name}">
         <div id="left" class="left transition-1s" :style="bannerBackGround[0]"
        @mouseenter="clearClock()" @mouseleave="startClock()">
         <!--<div style="position: absolute">e</div>-->
       </div></router-link>
-      <router-link :to="{path:'/'+ bannerBackGround[1].name}">
+      <router-link :to="{path:'/'+ bannerBackGround[0].name}">
         <div id="middle" class="middle line-gradient transition-1s"
            @mouseenter="clearClock()" @mouseleave="startClock()">
         <span class="border-left-top border-radius-product"></span>
@@ -97,11 +97,11 @@ export default {
       bannerBackGround: [
         { backgroundImage: 'url(' + require('../assets/img/user.jpg') + ')',
           backgroundSize: '100% 100%',
-          name: 'user'
+          name: 'production'
         },
         { backgroundImage: 'url(' + require('../assets/img/middle.jpg') + ')',
           backgroundSize: '100% 100%',
-          name: 'production'},
+          name: 'user'},
         { backgroundImage: 'url(' + require('../assets/img/resource.jpg') + ')',
           backgroundSize: '100% 100%',
           name: ''}
@@ -461,3 +461,6 @@ middle>div{
   }
 </style>
 
+<style >
+
+</style>

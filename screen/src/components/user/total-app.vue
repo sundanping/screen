@@ -35,12 +35,12 @@
   let clue = require('../../json/clue.json')
   export default {
     name: 'totalApp',
-    props:['app'],
+    props:['app-total'],
     data() {
       return {
         lists: clue.data,
         install: [232, 344, 453],
-        ff: 298,
+        ff: 298,//测试数据
         demoNum: [2.56 , 1, 0],
 //        pie 图数据
         option: {
@@ -88,13 +88,19 @@
             }
           ]
         }
-
       }
     },
     created() {
     },
     mounted() {
-      console.log(this.option.series[0].data)
+      let appData = this.appTotal
+//      console.log(appData)
+//      console.log(appData.data)
+      console.log(this.option.series[0].data[0].value)
+      this.option.series[0].data =[
+        {value:appData.data[0].android_install_accumulate, name:'Android'},
+        {value:appData.data[0].ios_install_accumulate, name:'IOS'}
+      ]
       setTimeout(this.getWidth, 2500)
       this.setHeight()
       let clientW = window.innerWidth
@@ -107,7 +113,7 @@
     methods: {
       getId :v => document.getElementById(v),//获取ID
       getWidth() {
-        console.log(this.install)
+//        console.log(this.install)
 //        this.install[1]= 604
 //        this.$set(this.install, 0, this.ff)//监听到数组变化渲染到页面，
         this.install.splice(0, 3, ...this.demoNum)//监听到数组变化渲染到页面，或者页面头部渲染ff亦可
@@ -133,20 +139,21 @@
       }
     },
     watch: {
-      app(newVal,oldVal){
-        let newarr=[
-          {value:newVal.android_install_accumulate , name:'Android'},
-          {value:newVal.ios_install_accumulate , name:'IOS'},
-        ]
-
-
-        Vue.set(this.option.series[0].data,0, {value:newVal.android_install_accumulate , name:'Android'})
-        Vue.set(this.option.series[0].data,1, {value:newVal.ios_install_accumulate , name:'Android'})
-
-//        this.option.series[0].data.splice(0, 2, ...newarr)
-//        this.ff=newVal.android_install_accumulate
-       console.log(this.option.series[0].data)
-  },deep:true
+//      appTotal(newVal,oldVal){
+//        let newarr=[
+//          {value:newVal.android_install_accumulate , name:'Android'},
+//          {value:newVal.ios_install_accumulate , name:'IOS'},
+//        ]
+//        console.log(newVal.android_install_accumulate )
+//        Vue.set(this.option.series[0].data,0, {value:newVal.android_install_accumulate , name:'Android'})
+//        Vue.set(this.option.series[0].data,1, {value:newVal.ios_install_accumulate , name:'Android'})
+//
+////        this.option.series[0].data.splice(0, 2, ...newarr)
+////        this.ff=newVal.android_install_accumulate
+////       console.log(this.option.series[0].data)
+//  },deep:true
+    },
+    update(){
     }
   }
 </script>

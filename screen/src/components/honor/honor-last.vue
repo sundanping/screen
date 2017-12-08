@@ -51,7 +51,7 @@
         let lineHeight= document.getElementsByName('press-name')
         for(let item of lineHeight){
           item.style.lineHeight=lineHeight[0].clientHeight +'px'
-          console.log( lineHeight[0].clientHeight +'px')
+        //  console.log( lineHeight[0].clientHeight +'px')
         }
       }
     }

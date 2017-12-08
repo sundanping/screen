@@ -1,165 +1,195 @@
 <template>
-  <article>
-    <header>
+  <article >
+    <header id="header">
       <span>{{userStatistics}}</span>
       <span @click="$router.go(-1)">{{goBack}}</span>
     </header>
-    <section >
-      <fieldset id="app-count">
-        <legend >APP累计</legend>
-        <div><total-app :app="response"></total-app></div>
-
-      </fieldset>
-      <fieldset id="web">
-        <legend >网站累计</legend>
-         <div style="width: 100%">
-           <website></website>
-         </div>
-
-      </fieldset>
-    </section>
-    <section>
-      <fieldset class="app-seven">
-        <legend >APP近七日日均</legend>
-        <div style="width:100%"><app-seven :message="userStatistics"></app-seven> </div>
-
-      </fieldset>
-      <fieldset>
-        <legend >网站近七日日均</legend>
-        <div >
-          <website-seven></website-seven>
+    <section id="product">
+      <section class="left">
+        <!--top-->
+        <div class="left-top">
+          <div>
+            <fieldset>
+              <legend>累计发稿量</legend>
+              <press-number></press-number>
+            </fieldset>
+          </div>
+          <div>
+            <fieldset >
+              <legend>累计访问量</legend>
+              <visit-number></visit-number>
+            </fieldset>
+          </div>
         </div>
+        <!--middle-->
+        <div class="visit" style="margin-right:.9%;position: relative;top:-5px;">
+          <fieldset>
+            <legend>近七日日均发稿</legend>
+            <press-sevenday></press-sevenday>
+          </fieldset>
+        </div>
+        <!--bottom-->
+        <div style="margin-right:.9%;position: relative;top:-9px;">
+          <fieldset>
+            <legend>24小时访问量</legend>
+            <visit-oneday></visit-oneday>
+          </fieldset>
+        </div>
+      </section>
 
-      </fieldset>
-    </section>
-    <section>
-      <fieldset class="install">
-        <legend >安装量目标预估</legend>
-        <install-target></install-target>
-      </fieldset>
-      <fieldset>
-        <legend >PV目标预估</legend>
-        <pv-target></pv-target>
-      </fieldset>
+      <section class="production-right">
+        <!--top-->
+        <div style="margin-left:0 ">
+          <fieldset>
+            <legend>本周光荣榜</legend>
+            <div style="height: 100%">
+              <!--<aside >-->
+                <!--<honor-top></honor-top>-->
+              <!--</aside>-->
+              <!--<aside >-->
+                <!--<honor-last></honor-last>-->
+              <!--</aside>-->
+              <top-eight></top-eight>
+            </div>
+          </fieldset>
+        </div>
+        <!--bottom-->
+        <div style="margin-left:0; ">
+          <from>
+            <fieldset>
+              <legend>本周TOP8</legend>
+              <div class="top-8"  style="height:100%;">
+                <top-eight></top-eight>
+              </div>
+            </fieldset>
+          </from>
+        </div>
+      </section>
     </section>
   </article>
 </template>
-  <script>
-  import totalApp from './user/total-app'
-  import installTarget from './user/install-target'
-  import pvTarget from './user/pv-target'
-  import website from './user/website'
-  import appSeven from './user/app-sevenday'
-  import websiteSeven from './user/website-sevenday'
+<script>
+  //  import honorRoll from './production/honor-roll'
+  import pressNumber from './production/press-number'
+  import pressSevenday from './production/press-sevenday'
+  import visitOneday from './production/visit-24hours'
+  import visitNumber from './production/visit-number'
+  import topEight from './production/top8'
+  import honorTop from './honor/honor-top'
+  import honorLast from './honor/honor-last'
 
   export default {
-    name: 'user',
+    name: 'production',
     components: {
-      totalApp,
-      installTarget,
-      pvTarget,
-      website,
-      appSeven,
-      websiteSeven
+//      honorRoll,
+      pressNumber,
+      pressSevenday,
+      visitOneday,
+      visitNumber,
+      topEight,
+      honorTop,
+      honorLast
     },
     data() {
       return {
         userStatistics: '用户统计',
-        goBack: '返回',
-        response:''
+        goBack: '返回'
       }
     },
     mounted () {
-      this.getInformation()
-      let windowHeight = window.innerHeight
-      console.log(windowHeight)
-      let fieldset = document.getElementsByTagName('fieldset')
-      for(let key of fieldset){
-//        fieldset 宽度设置
-        key.style.height=windowHeight*0.3 + 'px'
-      }
+      let windowHeight = document.body.clientHeight
+//      console.log(windowHeight)
+      let headerHeight = document.getElementById('header').clientHeight
+//      document.getElementById('father').style.height=(windowHeight-headerHeight)+'px'//后台加载高度
+//      let fieldset = document.getElementsByTagName('fieldset')
+//        for(let key of fieldset){
+//          console.log(key)
+//            key.style.height=windowHeight*0.3 + 'px'
+//        }
     },
-    methods : {
-      getInformation () {
-        let that = this
-        this.$http.get(this.httpApi+'/showapp')
-          .then(function (response) {
-            that.response = response.data[0]
-            console.log(that.response)
+    methods:{
 
-          })
-          .catch(function (err) {
-            console.log(err)
-          })
-      },
     }
   }
 </script>
-<style scoped>
-
+<style>
   article{
-    overflow: hidden;
-    padding:0 1%;
+    padding:1%;
+    height: 100%;
   }
-section{
-  width: 100%;
-  overflow: hidden;
 
-}
-#web>div{
-  display:inline-block;
-  width:45%;
-  height:99%;
-  overflow:hidden;
-}
   header{
     border-bottom:1px dotted #006ce1;
     width: 100%;
-    height: 6%;
-    margin-bottom:1%;
-    margin-top:1%;
     overflow: hidden;
   }
   header span{
-    font-size: 22px;
+    font-size: 20px;
     overflow: hidden;
   }
   header span:last-child{
     float: right;
-    position:relative;
-    bottom:2px;
     background-color: #bfbfbf;
     padding: 0 5px;
   }
-  #app-count >div{
-    display:inline-block;
-    width:100%;
-    height:99%;
+  /*图标栏*/
+  #product{
+    height:97%;
+    display:flex;
     overflow:hidden;
   }
-  fieldset>div{
-    display:inline-block;
-    width:100%;
-    height:99%;
-    overflow:hidden;
+  .left{
+    flex:2;
+    height:100%;
   }
-  fieldset{
-    /*清除浮动*/
-    position: relative;
-    box-sizing: border-box;
-    width: 49%;
-    height: 30%;
-    display: inline-block;
+  .left>div{
+    height: 32%;
+    margin-top:1.3%;
     overflow: hidden;
   }
+  .left-top >div{
+    width: 49%;
+    display: inline-block;
+    height:100%;
+    overflow: hidden;
 
-  section fieldset:nth-child(even){
-    left: 1%;
+    /*border:1px solid #666;*/
+  }
+  .left-top >div:last-child{
+    margin-left:.7%;
+  }
+  .production-right{
+    flex:1;
+    height:100%;
+    overflow: hidden;
+    margin-left:.4%;
+  }
+  .production-right>div{
+    width:100%;
+    height:48.75%;
+    display:inline-block;
+    overflow: hidden;
+  }
+  .production-right>div:first-child{
+    margin-top: 2.5%;
+  }
+  /*图标栏*/
+  fieldset{
+    /*清除浮动*/
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    -webkit-border-radius: 26px!important;
+    border-radius: 26px!important;
   }
   legend{
     margin-left: 25px;
+    padding:0 30px;
   }
-  .install{
+  .production-right div fieldset aside{
+    height:46%;
+  }
+  .top-8 >div{
 
   }
 </style>

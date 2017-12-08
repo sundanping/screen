@@ -13,54 +13,9 @@
     props:['message'],
     data() {
       return {
-       msg: [
-          {
-            type: 'value',
-            name: '数量',
-            axisLine: {
-              lineStyle: {
-                color: ['#71a4f2'],
-                width: '2',
-                type: 'solid'
-              }
-            },
-            axisTick: {
-              show: false,
-              alignWithLabel: true
-            },
-            splitLine: {
-              lineStyle: {
-                color: ['rgba(113,164,242,0.3)'],//网格线
-                width: '1',
-                type: 'solid',
-                show: true
-              }
-            },
-            axisPointer: {
-              show: true
-            }
-          }
-          ]
-      }
-    },
-    mounted() {
-      console.log(this.message)
-
-      let clientW = window.innerwidth
-      let clientH = window.innerHeight
-      document.getElementById('myChart1').style.width=clientW*0.47+ 'px'
-      document.getElementById('myChart1').style.height=clientH*0.3+ 'px'
-      this.drawLine()
-    },
-    methods: {
-      drawLine() {
-        // 基于准备好的dom，初始化echarts实例
-        let myChart = this.$echarts.init(document.getElementById('myChart1'))
-        // 绘制图表
-//        window.onresize = myChart.resize//自适应
-        myChart.setOption({
+        option:{
           title: {
-            text: this.message,
+            text: '',
             color:'#fff'
           },
           color: ['#60f07c', '#f86600', '#fc8e26', '#14da7e'],
@@ -70,7 +25,7 @@
             textStyle: {
               color: '#fff'
             },
-            data: [ '视频', '专题', '图集']
+            data: [ '安装量', '活跃用户', '启动次数']
           },
           toolbox: {
             feature: {
@@ -95,11 +50,11 @@
               boundaryGap: false,
               splitLine: {//网格线
                 lineStyle: {// 网格线color
-                color: ['rgba(113,164,242,0.3)']
+                  color: ['rgba(113,164,242,0.3)']
                 },
-                  width: '1',
-                  type: 'solid',
-                  show: true
+                width: '1',
+                type: 'solid',
+                show: true
               },
               axisLine: {
                 lineStyle: {
@@ -116,10 +71,37 @@
               data: ['08-23', '09-24', '09-25', '09-26', '09-27', '09-28', '09-29']
             }
           ],
-          yAxis: this.msg,
+          yAxis: [
+        {
+          type: 'value',
+          name: '数量',
+          axisLine: {
+            lineStyle: {
+              color: ['#71a4f2'],
+              width: '2',
+              type: 'solid'
+            }
+          },
+          axisTick: {
+            show: false,
+            alignWithLabel: true
+          },
+          splitLine: {
+            lineStyle: {
+              color: ['rgba(113,164,242,0.3)'],//网格线
+              width: '1',
+              type: 'solid',
+              show: true
+            }
+          },
+          axisPointer: {
+            show: true
+          }
+        }
+      ],
           series: [
             {
-              name: '视频',
+              name: '安装量',
               type: 'line',
               smooth: true,
               stack: '总量',
@@ -127,7 +109,7 @@
               data: [65, 93, 62, 111, 31, 89, 114]
             },
             {
-              name: '专题',
+              name: '活跃用户',
               type: 'line',
               smooth: true,
               stack: '总量',
@@ -135,7 +117,7 @@
               data: [42, 33, 222, 31, 61, 63, 114]
             },
             {
-              name: '图集',
+              name: '启动次数',
               type: 'line',
               smooth: true,
               stack: '总量',
@@ -143,7 +125,48 @@
               data: [88, 63, 12, 111, 11, 113, 64]
             }
           ]
-        })
+        }
+      }
+    },
+    mounted() {
+//    注册 获取时间 APP 安装量  启动次数  活跃用户  BEGIN
+      let time =[]
+      let install =[]
+      let pv =[]
+      let uv =[]
+      JSON.parse(this.message.data[0].app_install_lastdays).forEach(function(item){
+        time.unshift(item.datetime)
+        install.unshift(item.amount)
+      })
+      JSON.parse(this.message.data[0].app_pv_lastdays).forEach(function(item){
+        pv.unshift(item.amount)
+      })
+      JSON.parse(this.message.data[0].app_uv_lastdays).forEach(function(item){
+        uv.unshift(item.amount)
+      })
+      this.option.xAxis[0].data.splice(0,7, ...time)
+      this.option.series[0].data.splice(0,7, ...install)
+      this.option.series[1].data.splice(0,7, ...pv)
+      this.option.series[2].data.splice(0,7, ...uv)
+
+//    注册 获取时间 APP 安装量  启动次数  活跃用户  END
+
+      let clientW = window.innerwidth
+      let clientH = window.innerHeight
+      document.getElementById('myChart1').style.width=clientW*0.47+ 'px'
+      document.getElementById('myChart1').style.height=clientH*0.3+ 'px'
+      this.drawLine()
+    },
+    methods: {
+      drawLine() {
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = this.$echarts.init(document.getElementById('myChart1'))
+        // 绘制图表
+//        window.onresize = myChart.resize//自适应
+         window.addEventListener("resize",function(){
+            myChart.resize()
+       })
+        myChart.setOption(this.option)
       }
     }
   }
