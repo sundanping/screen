@@ -93,14 +93,14 @@
     created() {
     },
     mounted() {
-      let appData = this.appTotal
-//      console.log(appData)
-//      console.log(appData.data)
-      console.log(this.option.series[0].data[0].value)
-      this.option.series[0].data =[
-        {value:appData.data[0].android_install_accumulate, name:'Android'},
-        {value:appData.data[0].ios_install_accumulate, name:'IOS'}
-      ]
+//      let appData = this.appTotal
+////      console.log(appData)
+////      console.log(appData.data)
+//      console.log(this.option.series[0].data[0].value)
+//      this.option.series[0].data =[
+//        {value:appData.data[0].android_install_accumulate, name:'Android'},
+//        {value:appData.data[0].ios_install_accumulate, name:'IOS'}
+//      ]
       setTimeout(this.getWidth, 2500)
       this.setHeight()
       let clientW = window.innerWidth

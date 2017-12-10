@@ -14,7 +14,6 @@ Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.prototype.httpApi = 'http://big-screen.com'//ajax 请求的URL
 //Vue.use(ElementUI)
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
