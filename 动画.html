@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>VUE实例洗牌</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+        <script src="https://cdn.bootcss.com/vue/2.5.9/vue.js"></script>
+        <style type="text/css">
+             #file-demo {
+                background: #ccc;
+                padding-left: 20px;
+                padding-top: 20px;
+                padding-bottom: 40px;
+                overflow: hidden;
+                width: 490px;
+            }
+            #file-demo li{
+            	list-style: none;
+                border: 1px solid #fff;
+                float: left;
+                width: 50px;
+                height: 40px;
+                text-align: center;
+                line-height: 50px;
+            }
+            .file-move {
+                transition: transform 1s;
+            }
+            .file {
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="file-demo" class="file">
+            <h3>洗牌</h3>
+            <span>基于VUE列表的位移过渡效果功能和loadash.js的实例</span>
+            <button @click="shuffle">shuffle</button>
+            <transition-group name="file" tag="p">
+                <li v-for="item in items" v-bind:key="item.id">
+                    {{ item.number }}
+                </li>
+            </transition-group>
+
+        </div>
+    </body>
+    
+    <script type="text/javascript">
+        var vm=new Vue({
+            data: {
+                /**
+                 * Array.apply()创建数组，并规定数组的长度，map循环便利添加到li里
+                 * 
+                 */
+                items:Array.apply(null, {length: 3}).map(function(_, index){
+                    return {
+                        id: index,
+                        number: index % 2+ 1
+                    }
+                })
+            },
+            methods: {
+               shuffle:function(){
+            	console.log(this.items)
+
+                    /* 列表位移过渡效果的核心 */
+                    this.items = _.shuffle(this.items);
+               }
+            }
+        }).$mount("#file-demo")
+    </script>
+</html>

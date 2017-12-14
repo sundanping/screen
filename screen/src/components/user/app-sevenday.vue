@@ -10,7 +10,7 @@
 <script>
   export default {
     name: 'appSeven',
-//    props:['message'],
+    props:['message'],
     data() {
       return {
         option:{
@@ -130,24 +130,25 @@
     },
     mounted() {
 //    注册 获取时间 APP 安装量  启动次数  活跃用户  BEGIN
-//      let time =[]
-//      let install =[]
-//      let pv =[]
-//      let uv =[]
-//      JSON.parse(this.message.data[0].app_install_lastdays).forEach(function(item){
-//        time.unshift(item.datetime)
-//        install.unshift(item.amount)
-//      })
-//      JSON.parse(this.message.data[0].app_pv_lastdays).forEach(function(item){
-//        pv.unshift(item.amount)
-//      })
-//      JSON.parse(this.message.data[0].app_uv_lastdays).forEach(function(item){
-//        uv.unshift(item.amount)
-//      })
-//      this.option.xAxis[0].data.splice(0,7, ...time)
-//      this.option.series[0].data.splice(0,7, ...install)
-//      this.option.series[1].data.splice(0,7, ...pv)
-//      this.option.series[2].data.splice(0,7, ...uv)
+      let time =[]
+      let install =[]
+      let pv =[]
+      let uv =[]
+      console.log(this.message)
+      JSON.parse(this.message.data[0].app_install_lastdays).forEach(function(item){
+        time.unshift(item.datetime)
+        install.unshift(item.amount)
+      })
+      JSON.parse(this.message.data[0].app_pv_lastdays).forEach(function(item){
+        pv.unshift(item.amount)
+      })
+      JSON.parse(this.message.data[0].app_uv_lastdays).forEach(function(item){
+        uv.unshift(item.amount)
+      })
+      this.option.xAxis[0].data.splice(0,7, ...time)
+      this.option.series[0].data.splice(0,7, ...install)
+      this.option.series[1].data.splice(0,7, ...pv)
+      this.option.series[2].data.splice(0,7, ...uv)
 
 //    注册 获取时间 APP 安装量  启动次数  活跃用户  END
 

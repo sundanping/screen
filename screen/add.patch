@@ -1,0 +1,16 @@
+Index: screen/src/json/clue.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- screen/src/json/clue.json	(revision 717bb05050e50a679ab1ce709aedaef6ba6e5f97)
++++ screen/src/json/clue.json	(revision )
+@@ -30,7 +30,7 @@
+         "date": "2017-08-30 16:19:06",
+         "id": 115,
+         "status": 1,
+-        "title": "刘国中在长春督办中央环保督察组交办案件",
++        "title": "刘国中在长春督办中央环保督察哈哈啊组交办案件",
+         "unique_id": 4931
+       }
+     ]
