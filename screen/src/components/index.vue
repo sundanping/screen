@@ -1,17 +1,18 @@
 <template>
   <article class="index" >
     <nav id="nav" :style="navBackground">
-      导航栏</nav>
+      导航栏
+    </nav>
     <!--bannner 图片BEGIN-->
     <section class="banner">
-
+      <!--<transition-group name="file" tag="p">-->
       <router-link :to="{path:'/'+ bannerBackGround[1].name}">
-        <div id="left" class="left transition-1s" :style="bannerBackGround[0]"
-       @mouseenter="clearClock()" @mouseleave="startClock()">
-        <!--<div style="position: absolute">e</div>-->
-      </div></router-link>
+          <div id="left" class="left transition-1s" :style="bannerBackGround[0]"
+             @mouseenter="clearClock()" @mouseleave="startClock()">
+         </div>
+      </router-link>
       <router-link :to="{path:'/'+ bannerBackGround[0].name}">
-        <div id="middle" class="middle line-gradient transition-1s"
+        <div style="    height: 539.274px" id="middle" class="middle line-gradient transition-1s"
            @mouseenter="clearClock()" @mouseleave="startClock()">
         <span class="border-left-top border-radius-product"></span>
         <span class="border-right-top border-radius-product "></span>
@@ -25,6 +26,7 @@
               @mouseenter="clearClock()" @mouseleave="startClock()">
         <span :class="reminders === true ?'reminder':null" style=" opacity: 0;position: absolute;top:350px;left:140px;border:1px solid #fff;padding:4px;">资源创建中...</span>
       </div></router-link>
+      <!--</transition-group>-->
     </section>
     <!--bannner 图片END-->
     <!--今日统计-->
@@ -88,6 +90,7 @@ export default {
         backgroundRepeat: 'no-repeat',
         lineHeight: '30px',
         backgroundSize: '100% 100%',
+        top:0,
         backgroundImage: 'url(' + require('../assets/img/nav-background.png') + ')',
     },
       middleBackGround: {
@@ -97,13 +100,16 @@ export default {
       bannerBackGround: [
         { backgroundImage: 'url(' + require('../assets/img/user.jpg') + ')',
           backgroundSize: '100% 100%',
+          id:0,
           name: 'production'
         },
         { backgroundImage: 'url(' + require('../assets/img/middle.jpg') + ')',
           backgroundSize: '100% 100%',
+          id:1,
           name: 'user'},
         { backgroundImage: 'url(' + require('../assets/img/resource.jpg') + ')',
           backgroundSize: '100% 100%',
+          id:2,
           name: ''}
       ],buttonBackGround: {
           backgroundImage: 'url(' + require('../assets/img/oricle.png') + ')',
@@ -124,12 +130,12 @@ export default {
   mounted () {
 //    导航栏
     document.getElementById('nav').style.lineHeight = document.getElementById('nav').offsetHeight+ 'px'
-    console.log(document.getElementById('nav').offsetHeight)
+//    console.log(document.getElementById('nav').offsetHeight)
     let w =document.getElementById('left').clientWidth
     document.getElementById('left').style.height=w*82.6/62 + 'px'
     document.getElementById('right').style.height=w*82.6/62 + 'px'
     document.getElementById('middle').style.height=w*82.6/62 + 'px'
-    this.bannerInterval= setInterval(this.toLeft,3000)
+//    this.bannerInterval= setInterval(this.toLeft,3000)
   },
   methods: {
     toLeft () {
@@ -191,7 +197,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-
+  .file-move {
+    transition: transform 1s;
+  }
 
 @-webkit-keyframes fadeInOut {
   0% {
@@ -228,8 +236,11 @@ nav{
   text-align: center;
   position: relative;
   left:50% ;
+  top:0!important;
   font-weight: 600;
   margin-left:-180px;
+  margin-top:0;
+  padding-top: 0;
 }
   section div{
     display: inline-block;
@@ -301,7 +312,8 @@ nav{
   z-index:5;
   position: relative;
   right:-100px;
-  transform: perspective(800px) rotateY(18deg);
+  transform: perspective(800px) rotateY(15deg) rotateZ(0);
+  outline:1px solid transparent;
   margin-left:5%;
 
 }
@@ -309,11 +321,11 @@ nav{
   z-index:5;
   position: relative;
   left:-100px;
-  transform: perspective(800px) rotateY(-18deg);
+  transform: perspective(800px) rotateY(-15deg);
 }
 
 .middle{
-  z-index:10;
+  z-index:110;
   width: 30%;
   height:92%;
   position: relative;
@@ -462,5 +474,18 @@ middle>div{
 </style>
 
 <style >
+  /*日期选择器样式修改 BEGIN*/
+  input,button,select,textarea{outline:none;}
 
+  .el-button + .el-button span, .el-date-table td div span {
+    color: #5a5e66;
+  }
+
+  .prev-month div span, .next-month div span {
+    color: #b4bccc !important;
+  }
+  input[type='text']{
+    text-indent: 12px;
+  }
+  /*日期选择器样式修改 END*/
 </style>

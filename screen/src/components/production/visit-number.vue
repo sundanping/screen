@@ -8,12 +8,13 @@
     name: 'visitNumber',
     data() {
       return {
-        msg: ['测试', '已完成', '已归档'],
-        install: [232, 344, 453],
+        msg: ['专题', '视频', '图集','文稿'],
         shuju: [
-          {value: 735, name: '测试'},
-          {value: 735, name: '已完成'},
-          {value: 400, name: '已归档'}
+          {value: 735, name: '专题'},
+          {value: 735, name: '视频'},
+          {value: 400, name: '图集'},
+          {value: 400, name: '文稿'}
+
         ]
       }
     },
@@ -28,7 +29,7 @@
       drawLine() {
         let myChart = this.$echarts.init(document.getElementById('visit-number'))
         myChart.setOption({
-          color: ['#003A8F', '#3B73C7', '#95C2E8'],
+          color: ['#003160', '#003992', '#3976C5','#98BFE0'],
           textStyle: {
             color: '#fff'
           },

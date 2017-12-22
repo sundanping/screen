@@ -4,44 +4,60 @@
       <div class="block prediction-div">
         <span class="demonstration"> 截止时间：</span>
         <el-date-picker
+          style="background:none;"
           v-model="value1"
           align="right"
           type="date"
           placeholder="选择日期"
-          :picker-options="pickerOptions1">
+          format="yyyy-MM-dd"
+          :picker-options="pickerOptions1"
+        >
         </el-date-picker>
+        <!--<span v-if="warnSelectDate" class="red">请选择日期</span>-->
+        <span style="position: relative;margin-left:7%;font-weight: bold;">预估结果:</span>
       </div>
+
       <!--预告目标-->
     </section>
     <section>
       <div class="prediction prediction-div">
-      <div style="display: inline-block; margin-bottom:4px;"> <span> 预估目标：</span>
-        <input style="margin-right: 20px" class="prediction-result" type="text"></div>
-        <div style="display: inline-block ; margin-bottom:4px;"><span> 预估结果：</span>
-          <input style="color: red;" disabled="disabled" class="prediction-result" type="text" v-model="result"></div>
+        <div style=" display: inline-block; margin-bottom:4px;"> <span> 预估目标：</span>
+          <input  class="prediction-result" v-model="goal" type="text" @focus="watchDate" @blur="watchSelf($event)">
+          <!--<span class="red">{{warnGoal}}</span>-->
+          <span style="position: relative" class="can-finish"><span>可以完成</span>
+          <img v-if="canFinish==1" src="../../assets/img/can-t.png" alt="">
+        </span>
+          <span style="position: relative"  class="not-finish can-finish"><span>不能完成</span>
+           <img  v-if="canFinish==0" src="../../assets/img/not-f.png" alt="">
+        </span>
+        </div>
+        <!--<div style="display: inline-block ; margin-bottom:4px;"><span> 预估结果：</span>-->
+          <!--<input style="color: red;" disabled="disabled" class="prediction-result" type="text" v-model="result">-->
+        <!--</div>-->
       </div>
     </section>
     <section>
       <div class="prediction prediction-div">
         <!--<el-button class="a">提交评估</el-button>-->
-        <input style="border: 0;" class="prediction-result prediction-linear" value="提交评估" type="button">
-        <span style="position: relative" class="can-finish"><span>可以完成</span>
-          <img src="../../assets/img/can-t.png" alt="">
-        </span>
-        <span style="position: relative"  class="not-finish can-finish"><span>不能完成</span>
-           <img src="../../assets/img/not-f.png" alt="">
+        <span class="demonstration" style="opacity: 0"> 截止时间：</span>
+        <input style="border: 0;" class="prediction-result prediction-linear"
+          @click="sendInstall()"     value="提交评估" type="button">
 
-        </span>
       </div>
     </section>
   </article>
 </template>
 <script>
+  import dateFormate from './../../js/dateFormate.js'
   export default {
     name: 'installTarget',
     data() {
       return {
-        result: '提交评估查看评估结果',
+        goal:'',
+        warnGoal:'',
+        canFinish:2,
+        warnSelectDate:false,
+//        result: '提交评估查看评估结果',
         pickerOptions0: {
           disabledDate(time) {
             return time.getTime() > Date.now();
@@ -64,6 +80,55 @@
         },
         value1: ''
       };
+    },
+    mounted(){
+    },
+    methods:{
+
+      watchDate(){
+        if(this.value1==''){
+          this.warnSelectDate = true
+        }else{
+          this.warnSelectDate = false
+        }
+      },
+      watchSelf(e){
+        let reg =/^[0-9]*$/
+        if(this.goal==''){
+            this.warnGoal='请输入目标'
+        }else if(this.goal!='' && !reg.test(this.goal) ){
+           this.warnGoal='请输入有效的数字'
+           console.log(Object.prototype.toString.call(this.goal))
+        }else if(reg.test(this.goal) ){
+            this.warnGoal=''
+        }
+      },
+      sendInstall(){
+        let that = this
+        if(that.value1 ==''){
+          console.log(3)
+          that.warnSelectDate = true
+        }else{
+          console.log(4)
+
+          that.warnSelectDate = false
+        }
+
+         this.$http.get(this.httpApi+'/install',
+           {params:
+             {
+               goal:that.goal,
+               date:this.dateFormate(this.value1)
+             }
+           })
+           .then(function (res) {
+            console.log(res.data)
+             that.canFinish = res.data
+           })
+           .catch(function (err) {
+             console.log(err)
+           })
+      }
     }
   }
 </script>
@@ -74,17 +139,17 @@
 
   .prediction-result {
     width: 217px;
-    height: 32px;
+    height: 36px;
     color: #fff;
-    margin-left: 5px;
+
     border-radius: 4px;
     border: 1px solid #fff;
     display: inline-block;
-    background-color: #333333;
+    background-color: rgba(232,232,232,0);
   }
   .prediction-result:active{
-    transform:scale(1.05);
-    -webkit-transform:scale(1.05);
+    transform:scale(1.01);
+    -webkit-transform:scale(1.01);
   }
   article {
     height: 100%;
@@ -94,10 +159,10 @@
   section {
     height: 30%;
   }
-  section:last-child{
-    position: relative;
-    left:80px;
-  }
+  /*section:last-child{*/
+    /*position: relative;*/
+    /*left:80px;*/
+  /*}*/
   .prediction span{
     font-weight: bold;
 

@@ -20,6 +20,9 @@
     methods: {
       drawImg() {
         let myChart = this.$echarts.init(document.getElementById('visit-24'))
+        window.addEventListener("resize",function(){
+          myChart.resize()
+        })
         let option={
                 tooltip : {
                   trigger: 'axis',

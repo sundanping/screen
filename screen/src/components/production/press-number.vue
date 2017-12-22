@@ -8,12 +8,12 @@
         name: 'pressNumber',
         data() {
           return {
-            msg: ['测试', '已完成', '已归档'],
+            msg: ['待通过', '已通过', '未通过'],
             install: [232, 344, 453],
             shuju: [
-              {value: 235, name: '测试'},
-              {value: 735, name: '已完成'},
-              {value: 400, name: '已归档'}
+              {value: 235, name: '待通过'},
+              {value: 735, name: '已通过'},
+              {value: 400, name: '未通过'}
             ]
           }
         },
@@ -28,7 +28,7 @@
           drawLine() {
             let myChart = this.$echarts.init(document.getElementById('press-number'))
             myChart.setOption({
-              color: ['#003A8F', '#3B73C7', '#95C2E8'],
+              color: ['#821B40', '#C4496F', '#DB9FBA'],
               textStyle: {
                 color: '#fff'
               },
@@ -73,6 +73,8 @@
                 }
               ]
             })
+
+
           }
         }
       }

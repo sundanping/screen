@@ -13,35 +13,40 @@
     props:['message'],
     data() {
       return {
-        option:{
+        option :{
           title: {
-            text: '',
-            color:'#fff'
+//            text: '堆叠区域图'
           },
-          color: ['#60f07c', '#f86600', '#fc8e26', '#14da7e'],
-          legend: {
-            center: 'center',
-            top: '3',
+        color: [ '#61F27E', '#F4C41B', '#FC6701'],
+        tooltip : {
+           trigger: 'axis',
+           axisPointer: {
+              type: 'cross',
+              label: {
+                backgroundColor: '#6a7985'
+              }
+            }
+        },
+        legend: {
+            show:true,
+            orient:'horizontal',
+            icon:'stack',
+            borderColor:"#333",
+            radius : '3px',
             textStyle: {
               color: '#fff'
-            },
-            data: [ '安装量', '活跃用户', '启动次数']
-          },
+           },
+          data:['安装量', '活跃用户', '启动次数']
+        },
           toolbox: {
             feature: {
               saveAsImage: {}
             }
           },
-          tooltip: {
-            trigger: 'axis'
-          },
-          textStyle: {
-            color: '#ffffff'
-          },
           grid: {
             left: '7%',
             right: '7%',
-            bottom: '12%',
+            bottom: '20%',
             containLabel: true
           },
           xAxis: [
@@ -56,6 +61,7 @@
                 type: 'solid',
                 show: true
               },
+
               axisLine: {
                 lineStyle: {
                   color: ['rgb(113,164,242,0.3)'],
@@ -99,30 +105,60 @@
           }
         }
       ],
-          series: [
+          series : [
             {
-              name: '安装量',
-              type: 'line',
-              smooth: true,
+              name:'安装量',
+              type:'line',
               stack: '总量',
-              areaStyle: {normal: {}},
-              data: [65, 93, 62, 111, 31, 89, 114]
+//              areaStyle: {normal: {}},
+              areaStyle: {
+                normal: {
+                  color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#61F27E'
+                  }, {
+                    offset: 1,
+                    color: '#223'
+                  }])
+                }
+              },
+              data:[120, 132, 101, 134, 90, 230, 210]
             },
             {
-              name: '活跃用户',
-              type: 'line',
-              smooth: true,
+              name:'活跃用户',
+              type:'line',
               stack: '总量',
-              areaStyle: {normal: {}},
-              data: [42, 33, 222, 31, 61, 63, 114]
+//              areaStyle: {normal: {}},
+              areaStyle: {
+                normal: {
+                  color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#F4C41B'
+                  }, {
+                    offset: 1,
+                    color: '#223'
+                  }])
+                }
+              },
+              data:[220, 182, 191, 234, 290, 330, 310]
             },
             {
-              name: '启动次数',
-              type: 'line',
-              smooth: true,
+              name:'启动次数',
+              type:'line',
               stack: '总量',
-              areaStyle: {normal: {}},
-              data: [88, 63, 12, 111, 11, 113, 64]
+              areaStyle: {
+                normal: {
+                  color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color:  '#FC6701'
+                  }, {
+                    offset: 1,
+                    color: '#223'
+                  }])
+                }
+              },
+//              areaStyle: {normal: {}},
+              data:[150, 232, 201, 154, 190, 330, 410]
             }
           ]
         }
@@ -134,7 +170,6 @@
       let install =[]
       let pv =[]
       let uv =[]
-      console.log(this.message)
       JSON.parse(this.message.data[0].app_install_lastdays).forEach(function(item){
         time.unshift(item.datetime)
         install.unshift(item.amount)
@@ -163,11 +198,12 @@
         // 基于准备好的dom，初始化echarts实例
         let myChart = this.$echarts.init(document.getElementById('myChart1'))
         // 绘制图表
+        myChart.setOption(this.option)
+
 //        window.onresize = myChart.resize//自适应
          window.addEventListener("resize",function(){
             myChart.resize()
        })
-        myChart.setOption(this.option)
       }
     }
   }

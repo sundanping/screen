@@ -4,13 +4,14 @@
       <span>标题</span>
       <span class="float-right">访问量</span>
     </div>
-    <span v-for="i in 8">
+    <span v-for="i in 8 ">
+
       <div>
-        <span>{{i}}.南京侯建</span>
-        <span class="float-right">3214</span>
+        <span>{{i}}.南京厚建</span>
+        <span class="float-right">321</span>
       </div>
     <!--柱状图-->
-      <div style="background-color:#192a39">
+      <div style="background-color:#192a39;height:12px;border-radius: 1rem;margin:.5rem 0">
         <div :style="{width:(25+i)/33/0.01+'%'}" class="color-line"></div>
       </div>
      </span>
@@ -53,10 +54,9 @@ export default{
     background: -moz-linear-gradient(to right, #5c9dfc, #48c8ef, #5d9afd); /* Firefox 3.6 - 15 */
     background: linear-gradient(to right, #5c9dfc, #48c8ef, #5d9afd); /* 标准的语法（必须放在最后） */
     position: absolute;
-    height:40%;
-    width:100%;
-    top:20%;
+    height:100%;
     border-radius: 10px;
+
   }
 .float-right{
   float:right;

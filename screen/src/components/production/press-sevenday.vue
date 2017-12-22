@@ -37,6 +37,10 @@
       },
       drawLine() {
         let myChart = this.$echarts.init(document.getElementById('press-seven'))
+
+//        window.addEventListener("resize",function(){
+//          myChart.resize()
+//        })
        let option = {
           title: {
             text:'demo',
@@ -75,7 +79,7 @@
           grid: {
             top:'5%',
             left: '6.9%',
-            right: '5%',
+            right: '1%',
             bottom: '9%'
 //            containLabel: true
           },
@@ -168,7 +172,7 @@
                 normal: {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                     offset: 0,
-                    color: '#C14964'
+                    color: '#fb6703'
                   }, {
                     offset: 1,
                     color: '#223'
